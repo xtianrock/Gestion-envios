@@ -118,28 +118,8 @@ class Controlador {
         //para que esta muestre un mensaje distinto en el boton del formulario
         $accion='Modificar';
         $modelo=new Modelo();
-        if (isset($_GET['envio']))
-        {
-            $codigoEnvio=$_GET['envio'];
-            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
-        }
-        elseif(isset($_POST['codigo-envio']))
-        {
-            $codigoEnvio=$_POST['codigo-envio'];
-            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
-        }
-        elseif(isset($_POST['enviar-form']))
-        {
-            $codigoEnvio=$_POST['codigo-form'];
-        }
-        else
-        {
-                require RUTA_ABS.'\App\Vistas\introduce-envio.php';
-                exit();
-        }
-
+        $codigoEnvio = $this->obtenerCodigoEnvio($modelo, $accion);
         $datos=$modelo->obtenerDatosEnvio($codigoEnvio);
-
         if (isset($_POST['enviar-form']))
         {
             TratamientoFormularios::rellenarCamposConPost($datos);
@@ -162,34 +142,14 @@ class Controlador {
     {
         $modelo=new Modelo();
         $accion="eliminado";
-        if (isset($_GET['envio']))
+        $codigoEnvio = $this->obtenerCodigoEnvio($modelo, $accion);
+        if (isset($_POST['enviar-form']))
         {
-            $codigoEnvio=$_GET['envio'];
-            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
-        }
-        elseif(isset($_POST['comprobar-envio']))
-        {
-            $codigoEnvio=$_POST['codigo-envio'];
-            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
-        }
-        elseif(isset($_POST['confirmar'])&&$_POST['confirmar']=='Si')
-        {
-            $codigoEnvio=$_POST['cod'];
-        }
-        else
-        {
-            require RUTA_ABS.'\App\Vistas\introduce-envio.php';
-            exit();
-        }
-        if (isset($_POST['confirmar']))
-        {
-            if ($_POST['confirmar'] == 'Si') {
+            if ($_POST['enviar-form'] == 'Si') {
                 $codigoEnvio=$_POST['cod'];
                $mensaje=$modelo->eliminar('envios','codigo_envio',$codigoEnvio);
             }
-
             header('Location: '.URL_APP.'/App/index.php?operacion=listar');
-
         }
         include RUTA_ABS.'\App\Vistas\confirmacion.php';
     }
@@ -197,19 +157,18 @@ class Controlador {
 
     public function confirmarRecepcion()
     {
+
+        $modelo=new Modelo();
         $accion="marcado como recibido";
-        if (isset($_GET['envio']))
+        $codigoEnvio = $this->obtenerCodigoEnvio($modelo, $accion);
+        if (isset($_POST['enviar-form']))
         {
-            $codigoEnvio=$_GET['envio'];
-        }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST')
-        {
-            if ($_POST['confirm'] == 'Si') {
+            if ($_POST['enviar-form'] == 'Si') {
                 $modelo=new Modelo();
                 $codigoEnvio=$_POST['cod'];
                 $mensaje=$modelo->confirmar($codigoEnvio);
             }
-            header('Location:'.$_POST['referer']);
+            header('Location: '.URL_APP.'/App/index.php?operacion=listar');
         }
         include RUTA_ABS.'\App\Vistas\confirmacion.php';
     }
@@ -218,10 +177,7 @@ class Controlador {
 
     }
 
-    /**
-     * @param $codigoEnvio
-     * @param $modelo
-     */
+
     public function CompruebaEnvio($codigoEnvio, $modelo,$accion)
     {
         $codigoValidado = TratamientoFormularios::validarCodigo($codigoEnvio);
@@ -231,5 +187,29 @@ class Controlador {
             exit();
         }
     }
+
+    /**
+     * @param $modelo
+     * @param $accion
+     */
+    public function obtenerCodigoEnvio($modelo, $accion)
+    {
+        if (isset($_GET['envio'])) {
+            $codigoEnvio = $_GET['envio'];
+            $this->CompruebaEnvio($codigoEnvio, $modelo, $accion);
+            return $codigoEnvio;
+        } elseif (isset($_POST['comprobar-envio'])) {
+            $codigoEnvio = $_POST['codigo-envio'];
+            $this->CompruebaEnvio($codigoEnvio, $modelo, $accion);
+            return $codigoEnvio;
+        } elseif (isset($_POST['enviar-form'])) {
+            $codigoEnvio = $_POST['cod'];
+            return $codigoEnvio;
+        } else {
+            require RUTA_ABS . '\App\Vistas\introduce-envio.php';
+            exit();
+        }
+    }
+
 
 } 
