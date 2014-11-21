@@ -1,0 +1,136 @@
+*
+{
+    text-decoration: none;
+}
+a:hover span
+{
+    background: #50c1d3;
+    box-shadow: 0px 4px #36828e;
+
+}
+a:active span
+{
+    top: 4;
+    box-shadow: 0px 0px #6b54d3;
+
+
+}
+body
+{
+    background: #d0ffee;
+}
+
+#cabecera
+{
+    max-width: 1140px;
+    height:auto;
+    margin: 2em 15% 0 15%;
+    padding: 1em;
+
+}
+
+#contenido
+{
+    float: right;
+    width: 70%;
+    margin: 45px 15% 0 15%;
+
+}
+label
+{
+    display: inline-block;
+    width  : 100px;
+    text-align: right;
+}
+label textarea
+{
+    vertical-align: middle;
+}
+fieldset
+{
+    border: .1em solid #86cbd8;
+    border-radius: .5em;
+    padding: 1em;
+}
+form div
+{
+    margin: 1em;
+}
+img
+{
+    width: 38px;
+    height: 38px;
+
+    vertical-align: middle;
+}
+input,textarea,select
+{
+    background: #ececec;
+    cursor: pointer;
+    border-radius: .25em;
+}
+label
+{
+    cursor: pointer;
+}
+.lista
+{
+    padding: 0 10px 0 10px;
+    float: left;
+    position: relative;
+    width: 100%;
+    height: 35px;
+    background: #86cbd8;
+    border-radius: 6px;
+    box-shadow: 0px 4px rgba(0, 0, 0, 0.2);
+    transition: background .5s ease;
+    margin: 20px 0 0 0;
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    color: black;
+    line-height: 36px;
+    text-align: center;
+}
+.menu
+{
+    padding: 0 10px 0 10px;
+    float: left;
+    position: relative;
+    width: auto;
+    height: 35px;
+    background: #86cbd8;
+    border-radius: 6px;
+    box-shadow: 0 4px rgba(0, 0, 0, 0.2);
+    transition: background .5s ease;
+    margin: 0 12px 12px 0;
+    -webkit-user-select: none; /* Chrome/Safari */
+    -moz-user-select: none; /* Firefox */
+    -ms-user-select: none; /* IE10+ */
+
+    color: black;
+    line-height: 36px;
+    text-align: center;
+
+
+}
+.datos
+{
+
+    float: left;
+    width: 16%;
+
+}
+.accordion-toggle {
+    cursor: pointer;
+
+}
+.accordion-content {
+    display: none;
+    height: 100px;
+    margin-top: -35px;
+
+   }
+.accordion-content.default {display: block;}
+
