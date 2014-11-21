@@ -50,7 +50,7 @@ class Controlador {
     public function insertarEnvio()
     {
         $modelo=new Modelo();
-        $accion="insertar";
+        $accion="Insertar";
         $datos = array(
             'destinatario'=>'',
             'telefono' =>'',
@@ -95,6 +95,9 @@ class Controlador {
         $datos["nombreProvincia"] = $modelo->obtenerNombreProvincia($datos["provincia"]);
         require RUTA_ABS.'\App\Vistas\ingreso-form.php';
     }
+
+
+
     public function detalleEnvio()
     {
         if(isset($_GET["id"]))
@@ -109,29 +112,21 @@ class Controlador {
     }
 
 
-
-
-
-
-
-
-
-
-
-
     public function modificarEnvio()
     {
         // Le indica a la vista que se esta llevando a cabo una modificacion
         //para que esta muestre un mensaje distinto en el boton del formulario
-        $accion='modificar';
+        $accion='Modificar';
         $modelo=new Modelo();
         if (isset($_GET['envio']))
         {
             $codigoEnvio=$_GET['envio'];
+            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
         }
         elseif(isset($_POST['codigo-envio']))
         {
             $codigoEnvio=$_POST['codigo-envio'];
+            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
         }
         elseif(isset($_POST['enviar-form']))
         {
@@ -139,8 +134,8 @@ class Controlador {
         }
         else
         {
-            require RUTA_ABS.'\App\Vistas\introduce-envio.php';
-            exit();
+                require RUTA_ABS.'\App\Vistas\introduce-envio.php';
+                exit();
         }
 
         $datos=$modelo->obtenerDatosEnvio($codigoEnvio);
@@ -165,14 +160,17 @@ class Controlador {
 
     public function eliminarEnvio()
     {
+        $modelo=new Modelo();
         $accion="eliminado";
         if (isset($_GET['envio']))
         {
             $codigoEnvio=$_GET['envio'];
+            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
         }
         elseif(isset($_POST['comprobar-envio']))
         {
             $codigoEnvio=$_POST['codigo-envio'];
+            $this->CompruebaEnvio($codigoEnvio, $modelo,$accion);
         }
         elseif(isset($_POST['confirmar'])&&$_POST['confirmar']=='Si')
         {
@@ -186,7 +184,6 @@ class Controlador {
         if (isset($_POST['confirmar']))
         {
             if ($_POST['confirmar'] == 'Si') {
-                $modelo=new Modelo();
                 $codigoEnvio=$_POST['cod'];
                $mensaje=$modelo->eliminar('envios','codigo_envio',$codigoEnvio);
             }
@@ -219,6 +216,20 @@ class Controlador {
     public function buscarEnvio()
     {
 
+    }
+
+    /**
+     * @param $codigoEnvio
+     * @param $modelo
+     */
+    public function CompruebaEnvio($codigoEnvio, $modelo,$accion)
+    {
+        $codigoValidado = TratamientoFormularios::validarCodigo($codigoEnvio);
+        if (!$codigoValidado || !$modelo->existeEnvio($codigoEnvio)) {
+            $mensaje = !$codigoValidado ? 'Codigo de envio no valido' : 'El envio nº ' . $codigoEnvio . ' no existe';
+            require RUTA_ABS . '\App\Vistas\introduce-envio.php';
+            exit();
+        }
     }
 
 } 
