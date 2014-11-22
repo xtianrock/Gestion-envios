@@ -14,9 +14,12 @@ ob_start();
             </legend>
             <div>
                 <label for="codigo-envio">Codigo de envio: </label>
-                <input type="text" id="codigo-envio" placeholder="Inserte codigo de envio" value="" name="codigo-envio" required/>
+                <input <?php echo(isset($codigoEnvio))?"style='color: #FF0000'":"";?> type="text" id="codigo-envio" placeholder="Inserte codigo de envio" value="<?php echo(isset($codigoEnvio))?$codigoEnvio:"";?>" name="codigo-envio" required/>
             </div>
             <input type="submit" name="comprobar-envio" value="Continuar">
+            <?php if(isset($mensaje))
+                echo "<br /><p class='mensaje'>".$mensaje."</p><br />";
+            ?>
         </fieldset>
 
     </form>
