@@ -23,8 +23,8 @@ ob_start();?>
             <span class="datos"><?=$envio['codigo_envio']?></span>
             <span class="datos"><?=$envio['destinatario']?></span>
             <span class="datos"><?=$estados[$envio['estado']]?></span>
-            <span class="datos"><?=$envio['fecha_envio']?></span>
-            <span class="datos"><?=$envio['fecha_entrega']?></span>
+            <span class="datos"><?=$envio['fechaEnvio']?></span>
+            <span class="datos"><?=$envio['fechaEntrega']?></span>
         <span class="iconos">
             <a href="?operacion=modificar&envio=<?=$envio['codigo_envio']?>" title="Editar"><span class="boton"><img src="<?=URL_APP?>/Assets/img/icons/editar.png"></span></a>
             <a href="?operacion=eliminar&envio=<?=$envio['codigo_envio']?>" title="Eliminar"><span class="boton"><img src="<?=URL_APP?>/Assets/img/icons/eliminar.png"></span></a>
@@ -35,8 +35,8 @@ ob_start();?>
             <span class="datos"><?=$envio['codigo_envio']?></span>
             <span class="datos"><?=$envio['destinatario']?></span>
             <span class="datos"><?=$estados[$envio['estado']]?></span>
-            <span class="datos"><?=$envio['fecha_envio']?></span>
-            <span class="datos"><?=$envio['fecha_entrega']?></span>
+            <span class="datos"><?=$envio['fechaEnvio']?></span>
+            <span class="datos"><?=$envio['fechaEntrega']?></span>
             <span class="datos"><?=$envio['telefono']?></span>
             <span class="datos"><?=$envio['direccion']?></span>
             <span class="datos"><?=$envio['poblacion']?></span>

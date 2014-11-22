@@ -75,7 +75,7 @@ class Controlador {
             if (!$datosErroneos) {
                 //le añado al array los datos autogenerados
                 $datos['estado']='P';
-                $datos['fecha_envio']=date("y-m-d");
+                $datos['fecha_envio']='';
                 //llamo a la funcion insertar pasandole los datos y la tabla donde insertarlos, y que devuelve un mensaje de error o confirmacion.
                 $datos["mensaje"]=$modelo->insertar($datos,'envios');
 
@@ -157,7 +157,6 @@ class Controlador {
 
     public function confirmarRecepcion()
     {
-
         $modelo=new Modelo();
         $accion="marcado como recibido";
         $codigoEnvio = $this->obtenerCodigoEnvio($modelo, $accion);
@@ -166,7 +165,7 @@ class Controlador {
             if ($_POST['enviar-form'] == 'Si') {
                 $modelo=new Modelo();
                 $codigoEnvio=$_POST['cod'];
-                $mensaje=$modelo->confirmar($codigoEnvio);
+                $mensaje=$modelo->confirmar($codigoEnvio,date("y-m-d"));
             }
             header('Location: '.URL_APP.'/App/index.php?operacion=listar');
         }

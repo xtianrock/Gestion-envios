@@ -34,7 +34,7 @@ class Modelo {
 
     public function obtenerEnvios()
     {
-         $sql="select * from envios";
+         $sql="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios";
         $envios=$this->conexion->execute($sql);
         $envios = $this->tratarFecha($envios);
         return $envios;
@@ -46,7 +46,14 @@ class Modelo {
         foreach ($datos as $clave => $valor)
         {
              $campos[] = $clave;
-             $camposRellenos[]="'$valor'";
+            if ($clave=='fecha_envio')
+            {
+                $camposRellenos[]="CURDATE()";
+            }
+            else
+            {
+                $camposRellenos[]="'$valor'";
+            }
         }
         $campos = implode(",", $campos);
         $camposRellenos = implode(",", $camposRellenos);
@@ -116,8 +123,8 @@ class Modelo {
     public function tratarFecha($envios)
     {
         foreach ($envios as $clave => $envio) {
-            if (is_null($envio["fecha_entrega"])) {
-                $envios[$clave]["fecha_entrega"] = "____-__-__";
+            if (is_null($envio["fechaEntrega"])) {
+                $envios[$clave]["fechaEntrega"] = "__-__-____";
             }
 
         }
@@ -141,7 +148,7 @@ class Modelo {
     }
     public function confirmar($cod)
     {
-        $consulta="update envios set estado='E' where codigo_envio=$cod";
+        $consulta="update envios set estado='E',fecha_entrega=CURDATE() where codigo_envio=$cod";
         echo $consulta;
         $consultaRealizada=$this->conexion->sendQuery($consulta);
         if($consultaRealizada)
