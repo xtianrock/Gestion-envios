@@ -50,9 +50,9 @@ ob_start();
                 </label>
 
             </div>
-            <input type="hidden" name="codigo-form" value="<?=$codigoEnvio?>">
+            <input type="hidden" name="cod" value="<?=$codigoEnvio?>">
             <div>
-                <input type="submit" name="enviar-form" value="<?php echo($accion=='modificar'? "Guardar cambios":'Añadir envio')?>" />
+                <input type="submit" name="enviar-form" value="<?php echo($accion=='Modificar'? "Guardar cambios":'Añadir envio')?>" />
             </div>
             <?php if(isset($datos['mensaje']))
                 echo "<br /><p class='mensaje'>".$datos["mensaje"]."</p><br />";

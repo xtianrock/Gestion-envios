@@ -24,6 +24,12 @@ class TratamientoFormularios {
         }
         return $datosErroneos;
     }
+    public static function validarCodigo($codigoEnvio)
+    {
+        $opciones=array("options"=>
+                array("min_range"=>0, "max_range"=>99999999));
+        return filter_var($codigoEnvio,FILTER_VALIDATE_INT,$opciones);
+    }
     static function cp($valor)
     {
         //El código postal en España son cinco números. Los dos primeros van del 01 al 52 (las provincias)

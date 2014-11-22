@@ -8,7 +8,7 @@
  */
 
 define("RUTA_ABS", realpath(__DIR__.'/..'));
-define("URL_APP", "http://".$_SERVER["HTTP_HOST"]."/Practica-servidor");
+define("URL_APP", "http://".$_SERVER["HTTP_HOST"]."/Gestion-envios");
 
 
 require_once(RUTA_ABS."/App/Controladores/Controlador.php");

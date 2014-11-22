@@ -156,4 +156,10 @@ class Modelo {
 
     }
 
+    public function existeEnvio($codigoEnvio)
+    {
+        $consulta="select codigo_envio from envios where codigo_envio=$codigoEnvio";
+        return $this->conexion->executeScalar($consulta);
+    }
+
 }
