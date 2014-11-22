@@ -40,8 +40,23 @@ class Controlador {
     public function listarEnvio()
     {
         $modelo=new Modelo();
-        $envios=$modelo->obtenerEnvios();
+
+        $numeroEnvios=$modelo->obtenerNumeroRegistros("envios")["cantidad"];
+        $tamanoPagina=10;
         $estados=$modelo->devuelveEstados();
+        if(isset($_GET["pagina"]))
+        {
+            $pagina=$_GET["pagina"];
+            $inicio = ($pagina - 1) * $tamanoPagina;
+        }
+        else
+        {
+            $inicio = 0;
+            $pagina = 1;
+        }
+        $numeroPaginas = ceil($numeroEnvios / $tamanoPagina);
+        $envios=$modelo->obtenerEnvios($inicio,$tamanoPagina);
+        require RUTA_ABS.'\App\Vistas\paginacion.php';
         require RUTA_ABS.'\App\Vistas\listado-envios.php';
 
 
@@ -98,28 +113,28 @@ class Controlador {
 
 
 
-    public function detalleEnvio()
+  /*  public function detalleEnvio()
     {
         if(isset($_GET["id"]))
         {
             $id=$_GET["id"];
             $modelo=new Modelo();
-            $detalles=$modelo->obtenerDatosEnvio($id);
+            $detalles=$modelo->obtenerDatosModificables($id);
             $estados=$modelo->devuelveEstados();
             require $GLOBALS["rutaAbsoluta"].'\App\Vistas\ingreso-form.php';
         }
 
     }
-
+*/
 
     public function modificarEnvio()
     {
         // Le indica a la vista que se esta llevando a cabo una modificacion
         //para que esta muestre un mensaje distinto en el boton del formulario
-        $accion='Modificar';
+        $accion='modificado';
         $modelo=new Modelo();
         $codigoEnvio = $this->obtenerCodigoEnvio($modelo, $accion);
-        $datos=$modelo->obtenerDatosEnvio($codigoEnvio);
+        $datos=$modelo->obtenerDatosModificables($codigoEnvio);
         if (isset($_POST['enviar-form']))
         {
             TratamientoFormularios::rellenarCamposConPost($datos);

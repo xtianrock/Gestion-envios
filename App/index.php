@@ -20,7 +20,7 @@ require_once(RUTA_ABS."/App/lib/Tratamiento-form.php");
 $map = array(
     'home' => array('metodo' =>'inicio','titulo' =>'Envios'),
     'listar' => array('metodo' =>'listarEnvio','titulo' =>'Lista envio'),
-    'detalle' => array('metodo' =>'detalleEnvio','titulo' =>'Detalle envio'),
+   // 'detalle' => array('metodo' =>'detalleEnvio','titulo' =>'Detalle envio'),
     'alta' => array('metodo' =>'insertarEnvio','titulo' =>'Insercción envio'),
     'modificar' => array('metodo' =>'modificarEnvio','titulo' =>'Editar envio'),
     'eliminar' => array('metodo' =>'eliminarEnvio','titulo' =>'Cancelar envio'),

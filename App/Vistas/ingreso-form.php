@@ -6,6 +6,8 @@
  * Time: 17:26
  */
 ob_start();
+
+
 ?>
     <form id="alta-contacto" name="alta-form" action="" method="post" >
         <fieldset>

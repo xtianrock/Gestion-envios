@@ -25,17 +25,23 @@ class Modelo {
     {
         return array("P"=>"Pendiente","D"=>"Devuelto","E"=>"Entregado");
     }
-    public function obtenerDatosEnvio($cod)
+    public function obtenerDatosModificables($cod)
     {
-        $sql="select destinatario,telefono,direccion,cp,poblacion,provincia,email,observaciones from envios where codigo_envio=$cod";
-        $envios=$this->conexion->executeScalar($sql);
-        return $envios;
+        $consulta="select destinatario,telefono,direccion,cp,poblacion,provincia,email,observaciones from envios where codigo_envio=$cod";
+        return $this->conexion->executeScalar($consulta);
+
     }
 
-    public function obtenerEnvios()
+    public function obtenerNumeroRegistros($tabla)
     {
-         $sql="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios";
-        $envios=$this->conexion->execute($sql);
+        $consulta ="select count(*)as cantidad from envios";
+        return $this->conexion->executeScalar($consulta);
+    }
+
+    public function obtenerEnvios($inicio,$tamanoPagina)
+    {
+         $consulta="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios ORDER BY fechaEnvio DESC LIMIT ".$inicio.",".$tamanoPagina;
+        $envios=$this->conexion->execute($consulta);
         $envios = $this->tratarFecha($envios);
         return $envios;
     }

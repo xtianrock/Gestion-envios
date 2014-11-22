@@ -56,11 +56,10 @@ form div
 {
     margin: 1em;
 }
-img
+.icono
 {
     width: 38px;
     height: 38px;
-
     vertical-align: middle;
 }
 input,textarea,select
@@ -121,6 +120,16 @@ label
     float: left;
     width: 16%;
 
+}
+.paginacion
+{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.paginacion a:hover
+{
+    background: #50c1d3;
 }
 .accordion-toggle {
     cursor: pointer;

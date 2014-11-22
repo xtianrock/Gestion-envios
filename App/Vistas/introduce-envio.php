@@ -10,7 +10,7 @@ ob_start();
     <form method="post">
         <fieldset>
             <legend>
-                Seleccione un envio para <?=$accion?>
+                Seleccione un envio para que sea <?=$accion?>
             </legend>
             <div>
                 <label for="codigo-envio">Codigo de envio: </label>

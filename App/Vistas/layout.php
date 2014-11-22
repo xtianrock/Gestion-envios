@@ -35,44 +35,44 @@
     <nav>
         <a href="<?=URL_APP?>/App/index.php">
                  <span class="menu">
-                    <img src="<?=URL_APP?>/Assets/img/icons/home.png">
+                    <img class="icono" src="<?=URL_APP?>/Assets/img/icons/home.png">
                      Home
                 </span>
         </a>
         <a href="?operacion=listar">
                  <span class="menu">
-                    <img src="<?=URL_APP?>/Assets/img/icons/lista.png">
+                    <img class="icono" src="<?=URL_APP?>/Assets/img/icons/lista.png">
                      Listar envios
                 </span>
         </a>
         <a href="?operacion=alta">
                  <span class="menu">
-                    <img src="<?=URL_APP?>/Assets/img/icons/insertar.png">
+                    <img class="icono" src="<?=URL_APP?>/Assets/img/icons/insertar.png">
                      Nuevo envio
                 </span>
         </a>
 
         <a href="?operacion=modificar">
                  <span class="menu">
-                    <img src="<?=URL_APP?>/Assets/img/icons/editar.png">
+                    <img class="icono" src="<?=URL_APP?>/Assets/img/icons/editar.png">
                      Modificar envio
                 </span>
         </a>
         <a href="?operacion=eliminar">
                  <span class="menu">
-                    <img src="<?=URL_APP?>/Assets/img/icons/eliminar.png">
+                    <img class="icono" src="<?=URL_APP?>/Assets/img/icons/eliminar.png">
                      Eliminar envio
                 </span>
         </a>
         <a href="?operacion=confirmar">
                  <span class="menu">
-                    <img src="<?=URL_APP?>/Assets/img/icons/confirmar.png">
+                    <img class="icono" src="<?=URL_APP?>/Assets/img/icons/confirmar.png">
                      Confirmar recepción
                 </span>
         </a>
         <a href="?operacion=buscar">
                  <span class="menu">
-                    <img src="<?=URL_APP?>/Assets/img/icons/busqueda.png">
+                    <img class="icono" src="<?=URL_APP?>/Assets/img/icons/busqueda.png">
                      Buscar envio
                 </span>
         </a>
@@ -80,8 +80,10 @@
 </section>
 <section id="contenido">
     <?php
+    if(isset($paginacion))
+        echo $paginacion;
     if(isset($contenido))
-    echo $contenido;?>
+        echo $contenido;?>
 </section>
 
 </body>
