@@ -22,6 +22,14 @@
                 //Hide the other panels
                 $(".accordion-content").not($(this).next()).slideUp('fast');
             });
+            $('.accordion').find('.accordion-content').click(function(){
+
+                //Expand or collapse this panel
+                $(this).next().slideToggle('fast');
+
+                //Hide the other panels
+                $(".accordion-content").not($(this).next()).slideUp('fast');
+            });
         });
         function muestraConfirmacion(mensaje) {
             alert(mensaje);

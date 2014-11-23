@@ -25,11 +25,11 @@ ob_start();?>
             <span class="datos"><?=$estados[$envio['estado']]?></span>
             <span class="datos"><?=$envio['fechaEnvio']?></span>
             <span class="datos"><?=$envio['fechaEntrega']?></span>
-        <span class="iconos">
+        <div class="iconos">
             <a href="?operacion=modificar&envio=<?=$envio['codigo_envio']?>" title="Editar"><span class="boton"><img class="icono" src="<?=URL_APP?>/Assets/img/icons/editar.png"></span></a>
             <a href="?operacion=eliminar&envio=<?=$envio['codigo_envio']?>" title="Eliminar"><span class="boton"><img class="icono" src="<?=URL_APP?>/Assets/img/icons/eliminar.png"></span></a>
             <a href="?operacion=confirmar&envio=<?=$envio['codigo_envio']?>" title="Confirmar entrega"><span class="boton"><img  class="icono"src="<?=URL_APP?>/Assets/img/icons/confirmar.png"></span></a>
-        </span>
+        </div>
         </div>
         <div class="accordion-content lista">
             <span class="datos"><?=$envio['codigo_envio']?></span>
@@ -44,6 +44,11 @@ ob_start();?>
             <span class="datos"><?=$envio['provincia']?></span>
             <span class="datos"><?=$envio['email']?></span>
             <span class="datos"><?=$envio['observaciones']?></span>
+            <div class="iconos">
+                <a href="?operacion=modificar&envio=<?=$envio['codigo_envio']?>" title="Editar"><span class="boton"><img class="icono" src="<?=URL_APP?>/Assets/img/icons/editar.png"></span></a>
+                <a href="?operacion=eliminar&envio=<?=$envio['codigo_envio']?>" title="Eliminar"><span class="boton"><img class="icono" src="<?=URL_APP?>/Assets/img/icons/eliminar.png"></span></a>
+                <a href="?operacion=confirmar&envio=<?=$envio['codigo_envio']?>" title="Confirmar entrega"><span class="boton"><img  class="icono"src="<?=URL_APP?>/Assets/img/icons/confirmar.png"></span></a>
+            </div>
         </div>
     </div>
 
