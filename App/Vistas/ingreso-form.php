@@ -11,9 +11,7 @@ ob_start();
 ?>
     <form id="alta-contacto" name="alta-form" action="" method="post" >
         <fieldset>
-            <legend>
-                Alta Contacto
-            </legend>
+            <legend><?=$accion?> envio</legend>
             <div>
                 <label for="destinatario">Destinatario: </label>
                 <input <?php echo(isset($datosErroneos["destinatario-form"]))?"style='color: #FF0000'":"";?> type="text" id="destinatario" placeholder="Inserte destinatario" value="<?=$datos["destinatario"]?>" name="destinatario-form" required/>
