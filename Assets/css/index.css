@@ -24,7 +24,7 @@ body
 {
     height: 10%;
     width: 100%;
-    background: #283593;
+    background: #4285f4;
     box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
@@ -48,7 +48,8 @@ body
 #contenido
 {
     float: right;
-    width: 83%;
+    width: 80%;
+    margin-top: 20px;
 
 }
 label
@@ -66,10 +67,16 @@ fieldset
     border: .1em solid #86cbd8;
     padding: 1em;
     background: #ffffff;
+
+}
+form
+{
+    background: #ffffff;
     box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     max-width: 800px;
+    padding: 20px;
 }
 form div
 {
@@ -98,7 +105,7 @@ label
     position: relative;
     width: 96%;
     height: 35px;
-    background: #283593;
+    background: #4285f4;
     color: #ffffff;
 
     box-shadow: rgba(0, 0, 0, 0.2) 0 16px 16px 0;

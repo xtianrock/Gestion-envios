@@ -166,7 +166,7 @@ class Controlador {
             }
             header('Location: '.URL_APP.'/App/index.php?operacion=listar');
         }
-        include RUTA_ABS.'\App\Vistas\confirmacion.php';
+        require RUTA_ABS.'\App\Vistas\confirmacion.php';
     }
 
 
@@ -184,12 +184,9 @@ class Controlador {
             }
             header('Location: '.URL_APP.'/App/index.php?operacion=listar');
         }
-        include RUTA_ABS.'\App\Vistas\confirmacion.php';
+        require RUTA_ABS.'\App\Vistas\confirmacion.php';
     }
-    public function buscarEnvio()
-    {
 
-    }
 
 
     public function CompruebaEnvio($codigoEnvio, $modelo,$accion)
@@ -225,5 +222,62 @@ class Controlador {
         }
     }
 
+
+    public function buscarEnvio()
+    {
+        $parametrosBusqueda=[
+            "palabra" => [
+                [
+                    "codigo" => "=",
+                    "nombre" => "Igual que"
+                ],
+                [
+                    "codigo" => "!=",
+                    "nombre" => "Distinto de"
+                ],
+                [
+                    "codigo" => "like",
+                    "nombre" => "Que contenga"
+                ]
+            ],
+            "numero" => [
+                [
+                    "codigo" => "=",
+                    "nombre" => "Igual que"
+                ],
+                [
+                    "codigo" => "!=",
+                    "nombre" => "Distinto de"
+                ],
+                [
+                    "codigo" => "&gt;",
+                    "nombre" => "Mayor que"
+                ],
+                [
+                    "codigo" => "&gt;=",
+                    "nombre" => "Mayor o igual que"
+                ],
+                [
+                    "codigo" => "&lt;",
+                    "nombre" => "Menor que"
+                ],
+                [
+                    "codigo" => "&lt;=",
+                    "nombre" => "Menor o igual que"
+                ]
+            ],
+            "lista" => [
+                [
+                    "codigo" => "=",
+                    "nombre" => "Igual que"
+                ],
+                [
+                    "codigo" => "!=",
+                    "nombre" => "Distinto de"
+                ]
+            ]
+        ];
+        require RUTA_ABS . '\App\Vistas\busqueda-form.php';
+    }
 
 } 

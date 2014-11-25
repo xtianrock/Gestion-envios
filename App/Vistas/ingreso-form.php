@@ -10,7 +10,6 @@ ob_start();
 
 ?>
     <form id="alta-contacto" name="alta-form" action="" method="post" >
-        <fieldset>
             <legend><?=$accion?> envio</legend>
             <div>
                 <label for="destinatario">Destinatario: </label>
@@ -57,7 +56,7 @@ ob_start();
             <?php if(isset($datos['mensaje']))
                 echo "<br /><p class='mensaje'>".$datos["mensaje"]."</p><br />";
             ?>
-        </fieldset>
+
 
     </form>
 

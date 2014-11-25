@@ -16,11 +16,12 @@ require_once(RUTA_ABS."/App/Modelos/Modelo.php");
 require_once(RUTA_ABS."/App/Modelos/DatabaseProvider.php");
 require_once(RUTA_ABS."/App/config.php");
 require_once(RUTA_ABS."/App/lib/Tratamiento-form.php");
+require_once(RUTA_ABS."/App/helpers/crea-select-busqueda.php");
+require_once(RUTA_ABS."/App/helpers/carga-plantilla.php");
 // enrutamiento
 $map = array(
     'home' => array('metodo' =>'inicio','titulo' =>'Envios'),
     'listar' => array('metodo' =>'listarEnvio','titulo' =>'Lista envio'),
-   // 'detalle' => array('metodo' =>'detalleEnvio','titulo' =>'Detalle envio'),
     'alta' => array('metodo' =>'insertarEnvio','titulo' =>'Insercción envio'),
     'modificar' => array('metodo' =>'modificarEnvio','titulo' =>'Editar envio'),
     'eliminar' => array('metodo' =>'eliminarEnvio','titulo' =>'Cancelar envio'),
@@ -48,6 +49,7 @@ $titulo=$map[$ruta]["titulo"];
  $metodo = $map[$ruta]["metodo"];
 // Ejecución del controlador asociado a la ruta
 
+
 if (method_exists("Controlador",$metodo)) {
     $controlador=new Controlador();
     $controlador->$metodo();
@@ -62,4 +64,5 @@ if (method_exists("Controlador",$metodo)) {
         '</i> no existe</h1></body></html>';
 
 }
-require_once(RUTA_ABS."/App/Vistas/layout.php")?>
+
+require_once(RUTA_ABS."/App/Vistas/layout.php");

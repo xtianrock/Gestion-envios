@@ -17,21 +17,22 @@
 <body>
 
 <section id="cabecera">
-
+    <?=CargaVista(RUTA_ABS.'/App/Vistas/header2.php');?>
 </section>
 
 <section id="principal">
     <div id="menu-lateral">
-        <?php
-        require_once RUTA_ABS.'/App/Vistas/menu-lateral.php'?>
+       <?=CargaVista(RUTA_ABS.'/App/Vistas/menu-lateral.php');?>
     </div>
     <div id="contenido">
-        <?php
-        if(isset($paginacion))
-            echo $paginacion;
-        if(isset($contenido))
-            echo $contenido;?>
+        <?php if(isset($paginacion))
+                echo $paginacion;
+              if(isset($contenido))
+                echo $contenido;?>
     </div>
+</section>
+<section id="footer">
+    <?=CargaVista(RUTA_ABS.'/App/Vistas/footer.php');?>
 </section>
 
 </body>

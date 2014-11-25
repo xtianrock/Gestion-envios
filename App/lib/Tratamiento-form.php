@@ -57,7 +57,6 @@ class TratamientoFormularios {
             return false;
         }
     }
-
    static function alfabetico($valor)
     {
         $permitidos = '/^[A-Z üÜáéíóúÁÉÍÓÚñÑ]{1,50}$/i';
@@ -77,8 +76,6 @@ class TratamientoFormularios {
             }
         }
     }
-
-
     static function alfanumericoSimbolos($valor)
     {
         $permitidos = '/^[A-Z 0-9 üÜáéíóúÁÉÍÓÚñÑ,.-ºª"]{1,150}$/i';
@@ -98,7 +95,6 @@ class TratamientoFormularios {
             }
         }
     }
-
    static function numerico($valor)
     {
         if(empty($valor))
@@ -117,7 +113,6 @@ class TratamientoFormularios {
             }
         }
     }
-
     static function fecha($input)
     {
         $input_array= explode("-",$input);
@@ -142,20 +137,15 @@ class TratamientoFormularios {
 
 
     }
-
    static public function rellenarCamposConPost(& $datos)
     {
-        // echo "<pre>post ANTES:\n"; print_r($datos); echo "</pre>";
         foreach ($datos as $nombreCampo=>$valor)
         {
             $datos[$nombreCampo] = $_POST[$nombreCampo."-form"];
         }
-        // echo "<pre> DESPUES:\n"; print_r($datos); echo "</pre>";
-
     }
    static public function rellenarValorDefecto(& $datos)
     {
-        // echo "<pre>defecto ANTES:\n"; print_r($datos); echo "</pre>";
         foreach ($datos as $nombreCampo=>$valor)
         {
             if($nombreCampo!="mensaje")
@@ -163,7 +153,6 @@ class TratamientoFormularios {
                 $datos[$nombreCampo] = "";
             }
         }
-        // echo "<pre>DESPUES:\n"; print_r($datos); echo "</pre>";
     }
 
 }
