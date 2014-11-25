@@ -17,7 +17,6 @@
 <body>
 
 <section id="cabecera">
-   By Cris
 
 </section>
 

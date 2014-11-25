@@ -22,21 +22,33 @@ body
 
 #cabecera
 {
+    height: 10%;
     width: 100%;
-    height: auto;
-    border: solid white;
+    background: #283593;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    position: relative;
+}
+#principal
+{
+    height: 90%;
 }
 
 #menu-lateral
 {
     float: left;
-    width: 30%;
+    width:17%;
+    height: 90%;
+    margin-left: 0;
+
+
 }
 
 #contenido
 {
     float: right;
-    width: 60%;
+    width: 83%;
 
 }
 label
@@ -52,8 +64,12 @@ label textarea
 fieldset
 {
     border: .1em solid #86cbd8;
-    border-radius: .5em;
     padding: 1em;
+    background: #ffffff;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    max-width: 800px;
 }
 form div
 {
@@ -171,25 +187,34 @@ body {
     background-size: cover;
 }
 
-h1 {
-    font: normal 32px/32px Bitter; color: white;
-    text-align: center; padding: 85px 100px;
-}
 
 /*nav styles*/
 ul {
-    background: white; border-top: 6px solid hsl(180, 40%, 60%);
-    width: 200px; margin: 0 auto;
+    background: white;
+    width: 200px;
+    box-shadow: rgba(0, 0, 0, 0.5)  8px 8px 14px 0px ;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5)  8px 8px 14px 0px ;
+    -moz-box-shadow: rgba(0, 0, 0, 0.5)  8px 8px 14px 0px ;
+
 }
+
 ul li {
-    list-style-type: none;
+    list-style-type: circle;
     /*relative positioning for list items along with overflow hidden to contain the overflowing ripple*/
     position: relative;
     overflow: hidden;
 }
+li:hover
+{
+    -webkit-box-shadow: 6px 0px 29px 0px rgba(57, 50, 50, 0.75);
+    -moz-box-shadow:    6px 0px 29px 0px rgba(57, 50, 50, 0.75);
+    box-shadow:         6px 0px 29px 0px rgba(57, 50, 50, 0.75);
+}
 ul li a {
-    font: normal 14px/28px Montserrat; color: hsl(180, 40%, 40%);
-    display: block; padding: 10px 15px;
+    color: #283593;
+    font: normal 14px/28px Montserrat;
+    display: block;
+    padding: 10px 15px;
     text-decoration: none;
     cursor: pointer; /*since the links are dummy without href values*/
     /*prevent text selection*/

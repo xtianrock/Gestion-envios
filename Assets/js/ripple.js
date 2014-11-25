@@ -1,10 +1,10 @@
 (function(){
 	"use strict";
 
-	var colour = "#4285f4";
+	var colour = "#283593";
 	var opacity = 0.3;
 	var ripple_within_elements = ['li', 'button', 'a'];
-	var ripple_without_diameter = 0;
+	var ripple_without_diameter = 50;
 
 	var overlays = {
 		items: [],
@@ -37,15 +37,15 @@
 				$element.transition_phase++;
 				switch($element.transition_phase){
 					case 1:
-						$element.style[transition] = "all 0.5s ease-in-out";
+						$element.style[transition] = "all 0.15s ease-in-out";
 						$element.style.backgroundSize = $element.ripple_backgroundSize;
 						$element.style.backgroundPosition = $element.ripple_backgroundPosition;
 						setTimeout($element.next_transition, 0.3 * 1000); //now I know transitionend is better but it fires multiple times when multiple properties are animated, so this is simpler code and (imo) worth tiny delays
 						break;
 					case 2:
-						$element.style[transition] = "opacity 0.5s ease-in-out";
+						$element.style[transition] = "opacity 0.15s ease-in-out";
 						$element.style.opacity = 0;
-						setTimeout($element.next_transition, 0.5 * 1000);
+						setTimeout($element.next_transition, 0.3 * 1000);
 						break;
 					case 3:
 						overlays.recycle($element);

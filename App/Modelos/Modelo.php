@@ -40,7 +40,7 @@ class Modelo {
 
     public function obtenerEnvios($inicio,$tamanoPagina)
     {
-         $consulta="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios ORDER BY fechaEnvio DESC LIMIT ".$inicio.",".$tamanoPagina;
+         $consulta="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios ORDER BY fechaEnvio,codigo_envio LIMIT ".$inicio.",".$tamanoPagina;
         $envios=$this->conexion->execute($consulta);
         $envios = $this->tratarFecha($envios);
         return $envios;
@@ -55,6 +55,7 @@ class Modelo {
             if ($clave=='fecha_envio')
             {
                 $camposRellenos[]="CURDATE()";
+
             }
             else
             {
