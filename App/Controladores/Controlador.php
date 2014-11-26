@@ -277,6 +277,9 @@ class Controlador {
                 ]
             ]
         ];
+        $modelo=new Modelo();
+        $estados=$modelo->devuelveEstados();
+        $provincias=$modelo->ObtenerProvincias();
         require RUTA_ABS . '\App\Vistas\busqueda-form.php';
     }
 

@@ -9,7 +9,5 @@
 
 foreach ($provincias as $provincia)
 {
-    $nombreProvincia=utf8_encode($provincia["nombre"]);
-    echo "<option value='".$provincia['cod']."'>".$nombreProvincia."</option>";
-
+    echo "<option value='".$provincia['cod']."'>".$provincia["nombre"]."</option>";
 }

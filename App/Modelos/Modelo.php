@@ -23,7 +23,20 @@ class Modelo {
     }
     public function devuelveEstados()
     {
-        return array("P"=>"Pendiente","D"=>"Devuelto","E"=>"Entregado");
+        return  [
+            'P'=>[
+                "codigo" => "P",
+                "nombre" => "Pendiente"
+            ],
+            'D'=>[
+                "codigo" => "D",
+                "nombre" => "Devuelto"
+            ],
+            'E'=>[
+                "codigo" => "E",
+                "nombre" => "Entregado"
+            ]
+        ];
     }
     public function obtenerDatosModificables($cod)
     {
@@ -113,6 +126,10 @@ class Modelo {
 
         $consulta="select cod,nombre from provincias";
         $provincias=$this->conexion->execute($consulta);
+        foreach($provincias as $clave=>$valor)
+        {
+            $provincias[$clave]['nombre']=utf8_encode($valor['nombre']);
+        }
         return $provincias;
         //print_r($provincias);
     }
@@ -175,5 +192,7 @@ class Modelo {
         $consulta="select codigo_envio from envios where codigo_envio=$codigoEnvio";
         return $this->conexion->executeScalar($consulta);
     }
+
+
 
 }

@@ -22,7 +22,7 @@ ob_start();?>
         <div class="accordion-toggle lista">
             <span class="datos"><?=$envio['codigo_envio']?></span>
             <span class="datos"><?=$envio['destinatario']?></span>
-            <span class="datos"><?=$estados[$envio['estado']]?></span>
+            <span class="datos"><?=$estados[$envio['estado']]['nombre']?></span>
             <span class="datos"><?=$envio['fechaEnvio']?></span>
             <span class="datos"><?=$envio['fechaEntrega']?></span>
         <div class="iconos">
@@ -34,7 +34,7 @@ ob_start();?>
         <div class="accordion-content lista">
             <span class="datos"><?=$envio['codigo_envio']?></span>
             <span class="datos"><?=$envio['destinatario']?></span>
-            <span class="datos"><?=$estados[$envio['estado']]?></span>
+            <span class="datos"><?$estados[$envio['estado']]['nombre']?></span>
             <span class="datos"><?=$envio['fechaEnvio']?></span>
             <span class="datos"><?=$envio['fechaEntrega']?></span>
             <span class="datos"><?=$envio['telefono']?></span>
