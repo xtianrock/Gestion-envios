@@ -1,4 +1,3 @@
-
 <?php
 /**
  * Created by PhpStorm.
@@ -6,7 +5,8 @@
  * Date: 31/10/2014
  * Time: 13:34
  */
-
+session_name('envios');
+session_start();
 define("RUTA_ABS", realpath(__DIR__.'/..'));
 define("URL_APP", "http://".$_SERVER["HTTP_HOST"]."/Gestion-envios");
 

@@ -45,15 +45,25 @@ class Modelo {
 
     }
 
-    public function obtenerNumeroRegistros($tabla)
+    public function obtenerNumeroRegistros($tabla,$condiciones)
     {
         $consulta ="select count(*)as cantidad from envios";
+        if($condiciones)
+        {
+            $consulta .= " where $condiciones";
+        }
         return $this->conexion->executeScalar($consulta);
     }
 
-    public function obtenerEnvios($inicio,$tamanoPagina)
+    public function obtenerEnvios($inicio,$tamanoPagina,$condiciones)
     {
-         $consulta="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios ORDER BY fechaEnvio,codigo_envio LIMIT ".$inicio.",".$tamanoPagina;
+        $consulta="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios";
+        $sqlordenar=" ORDER BY fechaEnvio,codigo_envio LIMIT ".$inicio.",".$tamanoPagina;
+        if($condiciones)
+        {
+            $consulta .= " where $condiciones";
+        }
+        $consulta.=$sqlordenar;
         $envios=$this->conexion->execute($consulta);
         $envios = $this->tratarFecha($envios);
         return $envios;
@@ -131,7 +141,6 @@ class Modelo {
             $provincias[$clave]['nombre']=utf8_encode($valor['nombre']);
         }
         return $provincias;
-        //print_r($provincias);
     }
     public function obtenerNombreProvincia($codProvincia)
     {
@@ -146,11 +155,14 @@ class Modelo {
      */
     public function tratarFecha($envios)
     {
-        foreach ($envios as $clave => $envio) {
-            if (is_null($envio["fechaEntrega"])) {
-                $envios[$clave]["fechaEntrega"] = "__-__-____";
-            }
+        if($envios)
+        {
+            foreach ($envios as $clave => $envio) {
+                if (is_null($envio["fechaEntrega"])) {
+                    $envios[$clave]["fechaEntrega"] = "__-__-____";
+                }
 
+            }
         }
         return $envios;
     }
@@ -191,6 +203,28 @@ class Modelo {
     {
         $consulta="select codigo_envio from envios where codigo_envio=$codigoEnvio";
         return $this->conexion->executeScalar($consulta);
+    }
+
+    public function obtenerCondicionesSql($criterios=null)
+    {
+        $condiciones=[];
+        if($criterios!=null)
+        {
+            foreach ($criterios as $criterio)
+            {
+                if($criterio['conector']=='like')
+                {
+                    $condiciones[]=$criterio['campo'].' '.$criterio['conector']."'%".$criterio['valor']."%'";
+                }
+                else
+                {
+                    $condiciones[]=$criterio['campo'].' '.$criterio['conector']."'".$criterio['valor']."'";
+                }
+
+            }
+        }
+        $condiciones = implode(" and ", $condiciones);
+        return $condiciones;
     }
 
 

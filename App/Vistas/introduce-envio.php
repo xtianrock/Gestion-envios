@@ -8,7 +8,6 @@
 ob_start();
 ?>
     <form method="post">
-        <fieldset>
             <legend>
                 Seleccione un envio para que sea <?=$accion?>
             </legend>
@@ -20,9 +19,7 @@ ob_start();
             <?php if(isset($mensaje))
                 echo "<br /><p class='mensaje'>".$mensaje."</p><br />";
             ?>
-        </fieldset>
-
     </form>
 <?php $contenido = ob_get_clean();
 $titulo="Seleccione envio para la operación";
-include_once 'layout.php';
+require_once 'layout.php';

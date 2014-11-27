@@ -8,16 +8,19 @@
 
 ob_start();?>
 
-    <div class="lista">
+
+
+    <div class="lista-cabecera">
         <span class="datos">Codigo envio</span>
         <span class="datos">Destinatario</span>
         <span class="datos">Estado</span>
         <span class="datos">Fecha envio</span>
         <span class="datos">Fecha entrega</span>
-
     </div>
 
-        <?php foreach ($envios as $envio): ?>
+        <?php
+if (isset($envios)):
+foreach ($envios as $envio): ?>
     <div class="accordion">
         <div class="accordion-toggle lista">
             <span class="datos"><?=$envio['codigo_envio']?></span>
@@ -34,14 +37,14 @@ ob_start();?>
         <div class="accordion-content lista">
             <span class="datos"><?=$envio['codigo_envio']?></span>
             <span class="datos"><?=$envio['destinatario']?></span>
-            <span class="datos"><?$estados[$envio['estado']]['nombre']?></span>
+            <span class="datos"><?=$estados[$envio['estado']]['nombre']?></span>
             <span class="datos"><?=$envio['fechaEnvio']?></span>
             <span class="datos"><?=$envio['fechaEntrega']?></span>
             <span class="datos"><?=$envio['telefono']?></span>
             <span class="datos"><?=$envio['direccion']?></span>
             <span class="datos"><?=$envio['poblacion']?></span>
             <span class="datos"><?=$envio['cp']?></span>
-            <span class="datos"><?=$envio['provincia']?></span>
+            <span class="datos"><?=$provincias[$envio['provincia']+1]['nombre']?></span>
             <span class="datos"><?=$envio['email']?></span>
             <span class="datos"><?=$envio['observaciones']?></span>
             <div class="iconos">
@@ -52,9 +55,15 @@ ob_start();?>
         </div>
     </div>
 
-    <?php endforeach ?>
+<?php endforeach; endif;
 
-
-<?php $contenido = ob_get_clean();
+if (isset ($accion)&& $accion=='buscar'): ?>
+    <div class="nueva-busqueda">
+        <a href="index.php?operacion=buscar&&nueva=true" title="Nueva busqueda">
+            <b>+</b>
+        </a>
+    </div>
+<?php endif;
+$contenido = ob_get_clean();
 $titulo = "prueba";
-include 'layout.php';
+require_once 'layout.php';

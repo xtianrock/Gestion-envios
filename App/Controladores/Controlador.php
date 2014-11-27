@@ -37,13 +37,17 @@ class Controlador {
     {
 
     }
-    public function listarEnvio()
+    public function listarEnvio($criteriosBusqueda=null,$accion=null)
     {
         $modelo=new Modelo();
-
-        $numeroEnvios=$modelo->obtenerNumeroRegistros("envios")["cantidad"];
+        echo $accion;
+        $condicionesSql=$modelo->obtenerCondicionesSql($criteriosBusqueda);
+        print_r($condicionesSql);
+        $numeroEnvios=$modelo->obtenerNumeroRegistros("envios",$condicionesSql)["cantidad"];
         $tamanoPagina=10;
         $estados=$modelo->devuelveEstados();
+        $provincias=$modelo->ObtenerProvincias();
+        
         if(isset($_GET["pagina"]))
         {
             $pagina=$_GET["pagina"];
@@ -55,7 +59,7 @@ class Controlador {
             $pagina = 1;
         }
         $numeroPaginas = ceil($numeroEnvios / $tamanoPagina);
-        $envios=$modelo->obtenerEnvios($inicio,$tamanoPagina);
+        $envios=$modelo->obtenerEnvios($inicio,$tamanoPagina,$condicionesSql);
         require RUTA_ABS.'\App\Vistas\paginacion.php';
         require RUTA_ABS.'\App\Vistas\listado-envios.php';
 
@@ -135,6 +139,9 @@ class Controlador {
         $modelo=new Modelo();
         $codigoEnvio = $this->obtenerCodigoEnvio($modelo, $accion);
         $datos=$modelo->obtenerDatosModificables($codigoEnvio);
+        if (isset($_GET['nueva'])) {
+            unset($_SESSION['criteriosBusqueda']);
+        }
         if (isset($_POST['enviar-form']))
         {
             TratamientoFormularios::rellenarCamposConPost($datos);
@@ -225,6 +232,7 @@ class Controlador {
 
     public function buscarEnvio()
     {
+        $modelo=new Modelo();
         $parametrosBusqueda=[
             "palabra" => [
                 [
@@ -277,10 +285,49 @@ class Controlador {
                 ]
             ]
         ];
-        $modelo=new Modelo();
+        $camposValidos=[
+            'codigo_envio',
+            'destinatario',
+            'telefono',
+            'direccion',
+            'poblacion',
+            'cod_postal',
+            'provincia',
+            'email',
+            'estado',
+            'fecha_envio',
+            'fecha_entrega',
+            'observaciones'
+        ];
         $estados=$modelo->devuelveEstados();
         $provincias=$modelo->ObtenerProvincias();
-        require RUTA_ABS . '\App\Vistas\busqueda-form.php';
+        if (isset($_GET['nueva']))
+            unset($_SESSION['criteriosBusqueda']);
+        if (isset($_SESSION['criteriosBusqueda'])) {
+            $this->listarEnvio($_SESSION['criteriosBusqueda'],'buscar');
+        }
+        elseif ($_POST&&isset($_POST['buscar']))
+        {
+            $criterios=[];
+            foreach ($_POST as $clavePOST => $valorPOST) {
+                if (in_array($clavePOST, $camposValidos)) {
+                    if ($_POST["valor$clavePOST"] != NULL && $_POST["valor$clavePOST"] != "" && $_POST["valor$clavePOST"] != "0") {
+                        $criterios[] = [
+                            "campo" => $clavePOST,
+                            "conector" => $_POST["tipo$clavePOST"],
+                            "valor" => $_POST["valor$clavePOST"]
+                        ];
+                    }
+                }
+            }
+
+            if($criterios)
+            {
+                $_SESSION['criteriosBusqueda'] = $criterios;
+                $this->listarEnvio($criterios,'buscar');
+            }
+        }
+        require_once RUTA_ABS . '\App\Vistas\busqueda-form.php';
     }
 
 } 

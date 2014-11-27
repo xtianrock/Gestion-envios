@@ -9,7 +9,6 @@
 ob_start();
 ?>
 <form method="post">
-    <fieldset>
         <legend>
             Desea que el envio nº <?=$codigoEnvio?> sea <?=$accion?>
         </legend>
@@ -17,7 +16,6 @@ ob_start();
         <input type="submit" name="enviar-form" value="No">
 
         <input type="hidden" name="cod" value="<?=$codigoEnvio?>">
-    </fieldset>
 
 </form>
 <?php $contenido = ob_get_clean();

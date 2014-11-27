@@ -1,8 +1,8 @@
 (function(){
 	"use strict";
 
-	var colour = "#283593";
-	var opacity = 0.3;
+	var colour = "#ffb73a";
+	var opacity = 0.6;
 	var ripple_within_elements = ['li', 'button', 'a'];
 	var ripple_without_diameter = 25;
 

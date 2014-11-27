@@ -11,6 +11,7 @@
     <meta charset="utf-8" />
     <title><?=$titulo?></title>
     <link rel="stylesheet" href="../Assets/css/index.css">
+    <link href='http://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet' type='text/css'>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
     <script src="../Assets/js/ripple.js"></script>
 </head>

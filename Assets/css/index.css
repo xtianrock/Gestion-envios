@@ -1,56 +1,80 @@
 *
 {
     text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
 }
-a:hover span
-{
-    background: #50c1d3;
-    box-shadow: 0px 4px #36828e;
 
-}
-a:active span
-{
-    top: 4;
-    box-shadow: 0px 0px #6b54d3;
-
-
-}
 body
 {
     background: #ffffff;
 }
 
-#cabecera
+.cabecera1
 {
     height: 10%;
-    width: 100%;
+    width: 12%;
+    float: left;
     background: #4285f4;
-    box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
-    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    -webkit-box-shadow: 0px 8px 5px 0px rgba(50, 50, 50, 0.33);
+    -moz-box-shadow:    0px 8px 5px 0px rgba(50, 50, 50, 0.33);
+    box-shadow:         0px 8px 5px 0px rgba(50, 50, 50, 0.33);
+    position: relative;
+}
+.cabecera2
+{
+    height: 10%;
+    width: 88%;
+    float: right;
+    background: #4285f4;
+    -webkit-box-shadow:-6px 0#4285f4, 0px 8px 5px 0px rgba(50, 50, 50, 0.59);
+    -moz-box-shadow:   -6px 0#4285f4, 0px 8px 5px 0px rgba(50, 50, 50, 0.59);
+    box-shadow:       -6px 0#4285f4,  0px 8px 5px 0px rgba(50, 50, 50, 0.59);
     position: relative;
 }
 #principal
 {
-    height: 90%;
+    height: 80%;
 }
 
 #menu-lateral
 {
     float: left;
-    width:17%;
-    height: 90%;
+    width:12%;
+    height: 100%;
     margin-left: 0;
-
-
 }
 
 #contenido
 {
     float: right;
-    width: 80%;
+    width: 85%;
     margin-top: 20px;
-
+}
+#footer
+{
+    clear: both;
+}
+.footer1
+{
+    height: 10%;
+    width: 12%;
+    float: left;
+    background: #4285f4;
+    -webkit-box-shadow: 0px -8px 5px 0px rgba(50, 50, 50, 0.33);
+    -moz-box-shadow:    0px -8px 5px 0px rgba(50, 50, 50, 0.33);
+    box-shadow:         0px -8px 5px 0px rgba(50, 50, 50, 0.33);
+    position: relative;
+}
+.footer2
+{
+    height: 10%;
+    width: 88%;
+    float: right;
+    background: #4285f4;
+    -webkit-box-shadow:-6px 0#4285f4, 0px -8px 5px 0px rgba(50, 50, 50, 0.59);
+    -moz-box-shadow:   -6px 0#4285f4, 0px -8px 5px 0px rgba(50, 50, 50, 0.59);
+    box-shadow:       -6px 0#4285f4,  0px -8px 5px 0px rgba(50, 50, 50, 0.59);
+    position: relative;
 }
 label
 {
@@ -62,16 +86,10 @@ label textarea
 {
     vertical-align: middle;
 }
-fieldset
-{
-    border: .1em solid #86cbd8;
-    padding: 1em;
-    background: #ffffff;
 
-}
 form
 {
-    background: #ffffff;
+    background: #ffb73a;
     box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
@@ -98,7 +116,7 @@ label
 {
     cursor: pointer;
 }
-.lista
+.lista, .lista-cabecera
 {
     padding: 0 10px 0 10px;
     float: left;
@@ -121,61 +139,73 @@ label
 }
 .lista:hover
 {
-    background: #424e93;
-
-
+    background: #1972f4;
     box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
     -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
 
 }
-.menu
-{
-    padding: 0 10px 0 10px;
-    float: left;
-    position: relative;
-    width: auto;
-    height: 35px;
-    background: #86cbd8;
-    border-radius: 6px;
-    box-shadow: 0 4px rgba(0, 0, 0, 0.2);
-    transition: background .5s ease;
-    margin: 0 12px 12px 0;
-    -webkit-user-select: none; /* Chrome/Safari */
-    -moz-user-select: none; /* Firefox */
-    -ms-user-select: none; /* IE10+ */
-
-    color: black;
-    line-height: 36px;
-    text-align: center;
-
-
-}
 .datos
 {
-
     float: left;
     width: 16%;
-
+}
+.nueva-busqueda
+{
+    clear: both;
+    width: 3em;
+    height: 3em;
+    background: #4285f4;
+    margin-top: 20px;
+    border-radius: 200px 200px 200px 200px;
+    -moz-border-radius: 200px 200px 200px 200px;
+    -webkit-border-radius: 200px 200px 200px 200px;
+    text-align: center;
+    line-height: 3em;
+    float: left;
+    -webkit-box-shadow: 4px 4px 5px 0px rgba(50, 50, 50, 0.59);
+    -moz-box-shadow:    4px 4px 5px 0px rgba(50, 50, 50, 0.59);
+    box-shadow:         4px 4px 5px 0px rgba(50, 50, 50, 0.59);
+    cursor: pointer;
+    position: relative;
+}
+.nueva-busqueda a
+{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    z-index: 10;
+    color: #ffffff;
+    font-size: 1.5em;
+}
+.nueva-busqueda:hover
+{
+    background: #1972f4;
+    -webkit-box-shadow: 6px 6px 5px 0px rgba(50, 50, 50, 0.67);
+    -moz-box-shadow:    6px 6px 5px 0px rgba(50, 50, 50, 0.67);
+    box-shadow:         6px 6px 5px 0px rgba(50, 50, 50, 0.67);
 }
 .paginacion
 {
     margin: 0 auto;
     text-align: center;
 }
-
 .paginacion a:hover
 {
     background: #50c1d3;
 }
-.accordion-toggle,.accordion-content {
-    cursor: pointer;
 
+.accordion-toggle,.accordion-content
+{
+    cursor: pointer;
 }
 .accordion-content {
     display: none;
     height: 100px;
     margin-top: -35px;
+   background: #1972f4;
    }
 .accordion-content.default {display: block;}
 
@@ -185,20 +215,12 @@ label
     float: right;
 }
 
-/*custom fonts - Bitter, Montserrat*/
-@import url('http://fonts.googleapis.com/css?family=Montserrat|Bitter');
-/*basic reset*/
 * {margin: 0; padding: 0;}
-body {
-    background: url('http://thecodeplayer.com/u/m/b1.png') no-repeat center center fixed;
-    background-size: cover;
-}
 
-
-/*nav styles*/
 ul {
-    background: white;
-    width: 200px;
+    background: #ffffff;
+    width: 100%;
+    height: 100%;
     box-shadow: rgba(0, 0, 0, 0.5)  8px 8px 14px 0px ;
     -webkit-box-shadow: rgba(0, 0, 0, 0.5)  8px 8px 14px 0px ;
     -moz-box-shadow: rgba(0, 0, 0, 0.5)  8px 8px 14px 0px ;

@@ -11,10 +11,10 @@ ob_start();?>
         <table>
             <tr>
                 <th>Código</th>
-                <td><?= creaListaDesplegable("tipocodigo", $parametrosBusqueda['numero']) ?></td>
+                <td><?= creaListaDesplegable("tipocodigo_envio", $parametrosBusqueda['numero']) ?></td>
                 <td>
-                    <input type="text" name="valorcodigo" />
-                    <input type="hidden" name="codigo" />
+                    <input type="text" name="valorcodigo_envio" />
+                    <input type="hidden" name="codigo_envio" />
                 </td>
             </tr>
             <tr>
@@ -51,10 +51,10 @@ ob_start();?>
             </tr>
             <tr>
                 <th>Código Postal</th>
-                <td><?= creaListaDesplegable("tipocod_postal",$parametrosBusqueda['palabra']) ?></td>
+                <td><?= creaListaDesplegable("tipocp",$parametrosBusqueda['palabra']) ?></td>
                 <td>
-                    <input type="text" name="valorcod_postal" />
-                    <input type="hidden" name="cod_postal" />
+                    <input type="text" name="valorcp" />
+                    <input type="hidden" name="cp" />
                 </td>
             </tr>
             <tr>
@@ -82,11 +82,11 @@ ob_start();?>
                 </td>
             </tr>
             <tr>
-                <th>Fecha de creación</th>
-                <td><?= creaListaDesplegable("tipofecha_creacion", $parametrosBusqueda['numero']) ?></td>
+                <th>Fecha de envio</th>
+                <td><?= creaListaDesplegable("tipofecha_envio", $parametrosBusqueda['numero']) ?></td>
                 <td>
-                    <input type="date" name="valorfecha_creacion" />
-                    <input type="hidden" name="fecha_creacion" />
+                    <input type="date" name="valorfecha_envio" />
+                    <input type="hidden" name="fecha_envio" />
                 </td>
             </tr>
             <tr>
@@ -106,7 +106,7 @@ ob_start();?>
                 </td>
             </tr>
         </table>
-        <input type="submit" value="Buscar" />
+        <input type="submit" name="buscar" value="Buscar" />
     </form>
 <?php $contenido = ob_get_clean();
-include 'layout.php';
+require_once 'layout.php';

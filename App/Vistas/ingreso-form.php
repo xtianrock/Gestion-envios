@@ -62,4 +62,4 @@ ob_start();
 
 <?php $contenido = ob_get_clean();
 $titulo="prueba";
-include_once'layout.php';
+require_once'layout.php';
