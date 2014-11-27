@@ -130,7 +130,7 @@ label
     -webkit-box-shadow: rgba(0, 0, 0, 0.2) 0 16px 16px 0;
     -moz-box-shadow: rgba(0, 0, 0, 0.2) 0 16px 16px 0;
     transition: background .3s ease;
-    margin: 20px 0 0 0;
+    margin: 15px 0 0 0;
     -webkit-user-select: none; /* Chrome/Safari */
     -moz-user-select: none; /* Firefox */
     -ms-user-select: none; /* IE10+ */
