@@ -90,9 +90,9 @@ label textarea
 form
 {
     background: #ffb73a;
-    box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
-    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
-    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 16px 16px 0;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 8px 16px 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 8px 16px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 8px 16px 0;
     max-width: 800px;
     padding: 20px;
 }
@@ -137,6 +137,10 @@ label
     line-height: 36px;
     text-align: center;
 }
+.lista-cabecera
+{
+    background: #1972f4;
+}
 .lista:hover
 {
     background: #1972f4;
@@ -150,7 +154,7 @@ label
     float: left;
     width: 16%;
 }
-.nueva-busqueda
+.boton-mas
 {
     clear: both;
     width: 3em;
@@ -169,7 +173,7 @@ label
     cursor: pointer;
     position: relative;
 }
-.nueva-busqueda a
+.boton-mas a
 {
     position: absolute;
     width: 100%;
@@ -180,7 +184,7 @@ label
     color: #ffffff;
     font-size: 1.5em;
 }
-.nueva-busqueda:hover
+.boton-mas:hover
 {
     background: #1972f4;
     -webkit-box-shadow: 6px 6px 5px 0px rgba(50, 50, 50, 0.67);

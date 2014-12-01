@@ -6,7 +6,7 @@
  * Time: 16:38
  */
 
-class Controlador {
+class ControladorEnvios {
 
     public static  $criterios = array(
         'destinatario-form'  => array(
@@ -40,9 +40,7 @@ class Controlador {
     public static function listarEnvio($criteriosBusqueda=null,$accion=null)
     {
         $modelo=new Modelo();
-        echo $accion;
         $condicionesSql=$modelo->obtenerCondicionesSql($criteriosBusqueda);
-        print_r($condicionesSql);
         $numeroEnvios=$modelo->obtenerNumeroRegistros("envios",$condicionesSql)["cantidad"];
         $tamanoPagina=10;
         $estados=$modelo->devuelveEstados();
@@ -90,14 +88,13 @@ class Controlador {
 
             /* filtro los datos segun los criterios establecidos en el array $criterios
             ** y me devuelve un array con los posibles errores*/
-            $datosErroneos=TratamientoFormularios::validarArray(Controlador::$criterios);
+            $datosErroneos=TratamientoFormularios::validarArray(ControladorEnvios::$criterios);
             if (!$datosErroneos) {
                 //le añado al array los datos autogenerados
                 $datos['estado']='P';
                 $datos['fecha_envio']='';
                 //llamo a la funcion insertar pasandole los datos y la tabla donde insertarlos, y que devuelve un mensaje de error o confirmacion.
                 $datos["mensaje"]=$modelo->insertar($datos,'envios');
-
                 //Borro los campos para que puedainsertar un nuevo envio
                 TratamientoFormularios::rellenarValorDefecto($datos);
             }
@@ -137,7 +134,7 @@ class Controlador {
         //para que esta muestre un mensaje distinto en el boton del formulario
         $accion='modificado';
         $modelo=new Modelo();
-        $codigoEnvio = Controlador::obtenerCodigoEnvio($modelo, $accion);
+        $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
         $datos=$modelo->obtenerDatosModificables($codigoEnvio);
         if (isset($_GET['nueva'])) {
             unset($_SESSION['criteriosBusqueda']);
@@ -145,7 +142,7 @@ class Controlador {
         if (isset($_POST['enviar-form']))
         {
             TratamientoFormularios::rellenarCamposConPost($datos);
-            $datosErroneos=TratamientoFormularios::validarArray(Controlador::$criterios);
+            $datosErroneos=TratamientoFormularios::validarArray(ControladorEnvios::$criterios);
             if (!$datosErroneos) {
                 //llamo a la funcion insertar envio que devuelve un mensaje de error o confirmacion.
                 $datos["mensaje"]=$modelo->editar($datos,$codigoEnvio,"envios");
@@ -164,7 +161,7 @@ class Controlador {
     {
         $modelo=new Modelo();
         $accion="eliminado";
-        $codigoEnvio = Controlador::obtenerCodigoEnvio($modelo, $accion);
+        $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
         if (isset($_POST['enviar-form']))
         {
             if ($_POST['enviar-form'] == 'Si') {
@@ -181,7 +178,7 @@ class Controlador {
     {
         $modelo=new Modelo();
         $accion="marcado como recibido";
-        $codigoEnvio = Controlador::obtenerCodigoEnvio($modelo, $accion);
+        $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
         if (isset($_POST['enviar-form']))
         {
             if ($_POST['enviar-form'] == 'Si') {
@@ -214,11 +211,11 @@ class Controlador {
     {
         if (isset($_GET['envio'])) {
             $codigoEnvio = $_GET['envio'];
-            Controlador::CompruebaEnvio($codigoEnvio, $modelo, $accion);
+            ControladorEnvios::CompruebaEnvio($codigoEnvio, $modelo, $accion);
             return $codigoEnvio;
         } elseif (isset($_POST['comprobar-envio'])) {
             $codigoEnvio = $_POST['codigo-envio'];
-            Controlador::CompruebaEnvio($codigoEnvio, $modelo, $accion);
+            ControladorEnvios::CompruebaEnvio($codigoEnvio, $modelo, $accion);
             return $codigoEnvio;
         } elseif (isset($_POST['enviar-form'])) {
             $codigoEnvio = $_POST['cod'];
@@ -304,7 +301,7 @@ class Controlador {
         if (isset($_GET['nueva']))
             unset($_SESSION['criteriosBusqueda']);
         if (isset($_SESSION['criteriosBusqueda'])) {
-            Controlador::listarEnvio($_SESSION['criteriosBusqueda'],'buscar');
+            ControladorEnvios::listarEnvio($_SESSION['criteriosBusqueda'],'buscar');
         }
         elseif ($_POST&&isset($_POST['buscar']))
         {
@@ -324,7 +321,7 @@ class Controlador {
             if($criterios)
             {
                 $_SESSION['criteriosBusqueda'] = $criterios;
-                Controlador::listarEnvio($criterios,'buscar');
+                ControladorEnvios::listarEnvio($criterios,'buscar');
             }
         }
         require_once RUTA_ABS . '\App\Vistas\busqueda-form.php';

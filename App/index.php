@@ -18,22 +18,29 @@ define("RUTA_ABS", realpath(__DIR__.'/..'));
 define("URL_APP", "http://".$_SERVER["HTTP_HOST"]."/Gestion-envios");
 
 
-require_once(RUTA_ABS."/App/Controladores/Controlador.php");
-require_once(RUTA_ABS."/App/Modelos/Modelo.php");
-require_once(RUTA_ABS."/App/Modelos/DatabaseProvider.php");
+require_once(RUTA_ABS."/App/Controladores/ControladorEnvios.php");
+require_once(RUTA_ABS."/App/Controladores/ControladorUsuarios.php");
+require_once(RUTA_ABS. "/App/Modelos/ModeloEnvios.php");
+require_once(RUTA_ABS. "/App/Modelos/ModeloUsuarios.php");
+require_once(RUTA_ABS."/App/lib/DatabaseProvider.php");
 require_once(RUTA_ABS."/App/config.php");
 require_once(RUTA_ABS."/App/lib/Tratamiento-form.php");
 require_once(RUTA_ABS."/App/helpers/crea-select-busqueda.php");
 require_once(RUTA_ABS."/App/helpers/carga-plantilla.php");
 // enrutamiento
 $map = array(
-    'home' => array('controlador'=>'','metodo' =>'inicio','titulo' =>'Envios'),
-    'listar' => array('metodo' =>'listarEnvio','titulo' =>'Lista envio'),
-    'alta' => array('metodo' =>'insertarEnvio','titulo' =>'Insercción envio'),
-    'modificar' => array('metodo' =>'modificarEnvio','titulo' =>'Editar envio'),
-    'eliminar' => array('metodo' =>'eliminarEnvio','titulo' =>'Cancelar envio'),
-    'confirmar' => array('metodo' =>'confirmarRecepcion','titulo' =>'confirmar envio'),
-     'buscar' => array('metodo' =>'buscarEnvio','titulo' =>'Buscar envios')
+    'home' => array('controlador'=>'ControladorEnvios','metodo' =>'inicio','titulo' =>'Envios'),
+    'listar' => array('controlador'=>'ControladorEnvios','metodo' =>'listarEnvio','titulo' =>'Lista envio'),
+    'alta' => array('controlador'=>'ControladorEnvios','metodo' =>'insertarEnvio','titulo' =>'Insercción envio'),
+    'modificar' => array('controlador'=>'ControladorEnvios','metodo' =>'modificarEnvio','titulo' =>'Editar envio'),
+    'eliminar' => array('controlador'=>'ControladorEnvios','metodo' =>'eliminarEnvio','titulo' =>'Cancelar envio'),
+    'confirmar' => array('controlador'=>'ControladorEnvios','metodo' =>'confirmarRecepcion','titulo' =>'confirmar envio'),
+    'buscar' => array('controlador'=>'ControladorEnvios','metodo' =>'buscarEnvio','titulo' =>'Buscar envios'),
+    'login' => array('controlador'=>'ControladorUsuarios','metodo' =>'login','titulo' =>'Login'),
+    'logout' => array('controlador'=>'ControladorUsuarios','metodo' =>'logout','titulo' =>'Logout'),
+    'control-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'control','titulo' =>'Login'),
+    'nuevo-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'nuevo','titulo' =>'Login'),
+    'eliminar-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'eliminar','titulo' =>'Login')
 );
 
 if(isset($_SESSION['usuario']))
@@ -53,11 +60,12 @@ if(isset($_SESSION['usuario']))
         $ruta = 'home';
     }
     $titulo=$map[$ruta]["titulo"];
+    $controlador = $map[$ruta]["controlador"];
     $metodo = $map[$ruta]["metodo"];
 // Ejecución del controlador asociado a la ruta
 
-    if (method_exists("Controlador",$metodo)) {
-        Controlador::$metodo();
+    if (method_exists($controlador,$metodo)) {
+        $controlador::$metodo();
 
     } else {
         header('Status: 404 Not Found');
@@ -73,7 +81,7 @@ if(isset($_SESSION['usuario']))
 }
 else
 {
-
+    ControladorUsuarios::login();
 }
 
 require_once(RUTA_ABS."/App/Vistas/layout.php");

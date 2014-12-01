@@ -78,7 +78,6 @@ class Modelo {
             if ($clave=='fecha_envio')
             {
                 $camposRellenos[]="CURDATE()";
-
             }
             else
             {
@@ -87,9 +86,7 @@ class Modelo {
         }
         $campos = implode(",", $campos);
         $camposRellenos = implode(",", $camposRellenos);
-
         $consulta = "insert into $tabla ($campos) values ($camposRellenos)";
-        echo $consulta;
         $consultaRealizada=$this->conexion->sendQuery($consulta);
         if($consultaRealizada)
         {
@@ -185,7 +182,6 @@ class Modelo {
     public function confirmar($cod)
     {
         $consulta="update envios set estado='E',fecha_entrega=CURDATE() where codigo_envio=$cod";
-        echo $consulta;
         $consultaRealizada=$this->conexion->sendQuery($consulta);
         if($consultaRealizada)
         {
@@ -220,12 +216,13 @@ class Modelo {
                 {
                     $condiciones[]=$criterio['campo'].' '.$criterio['conector']."'".$criterio['valor']."'";
                 }
-
             }
         }
         $condiciones = implode(" and ", $condiciones);
         return $condiciones;
     }
+
+
 
 
 

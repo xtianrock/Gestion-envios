@@ -58,7 +58,7 @@ foreach ($envios as $envio): ?>
 <?php endforeach; endif;
 
 if (isset ($accion)&& $accion=='buscar'): ?>
-    <div class="nueva-busqueda">
+    <div class="boton-mas">
         <a href="index.php?operacion=buscar&&nueva=true" title="Nueva busqueda">
             <b>+</b>
         </a>
