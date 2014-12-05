@@ -30,7 +30,7 @@ abstract class DatabaseProvider
 class MySqlProvider extends DatabaseProvider
 {
     public function connect($host, $user, $pass, $dbname){
-        $this->resource = new mysqli($host, $user, $pass, $dbname);
+        $this->resource = @new mysqli($host, $user, $pass, $dbname);
         return  $this->resource;
     }
     public function getErrorNo(){
@@ -62,12 +62,21 @@ class DataBaseLayer
     private $params;
     private static $_con;
 
-    private function __construct($provider){
+    private function __construct($provider,$parametros=null){
         if(!class_exists($provider)){
             throw new Exception("El proveedor especificado no ha sido implentado o añadido.");
         }
-        $this->provider = new $provider;
-        $this->provider->connect(Config::$hostname,Config::$usuario,Config::$clave,Config::$nombre);
+        if ($parametros)
+        {
+            $this->provider = new $provider;
+            $this->provider->connect($parametros['servidor'], $parametros['usuario'], $parametros['clave'],$parametros['bd']);
+        }
+        else
+        {
+            $this->provider = new $provider;
+            $this->provider->connect(Config::$hostname,Config::$usuario,Config::$clave,Config::$nombre);
+        }
+
         if(!$this->provider->isConnected()){
             /*Controlar error de conexion*/
         }
@@ -82,6 +91,21 @@ class DataBaseLayer
             return self::$_con;
         }
     }
+
+    public static function tryConnection($provider,$parametros)
+    {
+       $this->provider->is
+        if(self::$_con){
+            echo "existe";
+            return true;
+        }
+        else
+        {
+            echo "no existe";
+            return false;
+        }
+    }
+
     private function replaceParams($coincidencias){
         $b=current($this->params);
         next($this->params);

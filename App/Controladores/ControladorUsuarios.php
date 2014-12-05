@@ -57,7 +57,28 @@ class ControladorUsuarios {
 
     public static function eliminar()
     {
-        $accion="eliminar";
-      
+        $modelo=new ModeloUsuarios();
+        $accion="eliminado";
+        $usuario = ControladorUsuarios::obtenerNombreUsuario($modelo, $accion);
+        if (isset($_POST['enviar-form']))
+        {
+            if ($_POST['enviar-form'] == 'Si') {
+                $modelo->eliminar($usuario);
+                header('Location: '.URL_APP.'/App/index.php?operacion=control-usuario');
+            }
+
+        }
+        require RUTA_ABS.'\App\Vistas\confirmacion-usuario.php';
+    }
+
+    public static function obtenerNombreUsuario($modelo, $accion)
+    {
+        if (isset($_GET['usuario'])) {
+            $usuario = $_GET['usuario'];
+            return $usuario;
+        }elseif (isset($_POST['enviar-form'])) {
+            $usuario = $_POST['usuario'];
+            return $usuario;
+        }
     }
 } 

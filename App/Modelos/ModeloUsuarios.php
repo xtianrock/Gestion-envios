@@ -50,4 +50,19 @@ class ModeloUsuarios {
         return $mensaje;
     }
 
+    public function eliminar($usuario)
+    {
+        $consulta="delete from usuarios where nombre='$usuario'";
+        $consultaRealizada=$this->conexion->sendQuery($consulta);
+        if($consultaRealizada)
+        {
+            $mensaje="Usuario ".$usuario.' eliminado con exito';
+        }
+        else
+        {
+            $mensaje="No se pudo eliminar el usuario ".$usuario;
+        }
+        return $mensaje;
+    }
+
 } 

@@ -31,6 +31,15 @@ body
     box-shadow:       -6px 0#4285f4,  0px 8px 5px 0px rgba(50, 50, 50, 0.59);
     position: relative;
 }
+.controles-cabecera{
+    margin: 20px;
+    float: right;
+    color: #ffffff;
+}
+.controles-cabecera a:visited
+{
+    color: #ffffff;
+}
 #principal
 {
     height: 80%;
@@ -249,8 +258,7 @@ ul li a {
     display: block;
     padding: 10px 15px;
     text-decoration: none;
-    cursor: pointer; /*since the links are dummy without href values*/
-    /*prevent text selection*/
+    cursor: pointer;
     user-select: none;
     /*static positioned elements appear behind absolutely positioned siblings(.ink in this case) hence we will make the links relatively positioned to bring them above .ink*/
     position: relative;

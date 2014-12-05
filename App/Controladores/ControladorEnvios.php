@@ -132,7 +132,7 @@ class ControladorEnvios {
     {
         // Le indica a la vista que se esta llevando a cabo una modificacion
         //para que esta muestre un mensaje distinto en el boton del formulario
-        $accion='modificado';
+        $accion='Modificar';
         $modelo=new Modelo();
         $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
         $datos=$modelo->obtenerDatosModificables($codigoEnvio);
@@ -165,8 +165,7 @@ class ControladorEnvios {
         if (isset($_POST['enviar-form']))
         {
             if ($_POST['enviar-form'] == 'Si') {
-                $codigoEnvio=$_POST['cod'];
-               $mensaje=$modelo->eliminar('envios','codigo_envio',$codigoEnvio);
+               $modelo->eliminar('envios','codigo_envio',$codigoEnvio);
             }
             header('Location: '.URL_APP.'/App/index.php?operacion=listar');
         }
@@ -183,8 +182,7 @@ class ControladorEnvios {
         {
             if ($_POST['enviar-form'] == 'Si') {
                 $modelo=new Modelo();
-                $codigoEnvio=$_POST['cod'];
-                $mensaje=$modelo->confirmar($codigoEnvio,date("y-m-d"));
+                $modelo->confirmar($codigoEnvio,date("y-m-d"));
             }
             header('Location: '.URL_APP.'/App/index.php?operacion=listar');
         }
