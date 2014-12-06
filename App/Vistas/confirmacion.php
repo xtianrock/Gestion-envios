@@ -12,8 +12,8 @@ ob_start();
         <legend>
             Desea que el envio nº <?=$codigoEnvio?> sea <?=$accion?>
         </legend>
-        <input type="submit" name="enviar-form" value="Si" onclick="muestraConfirmacion('Envio nº <?=$codigoEnvio?> <?=$accion?>');">
-        <input type="submit" name="enviar-form" value="No">
+        <input type="submit" name="confirmacion" value="Si" onclick="muestraConfirmacion('Envio nº <?=$codigoEnvio?> <?=$accion?>');">
+        <input type="submit" name="confirmacion" value="No">
 
         <input type="hidden" name="cod" value="<?=$codigoEnvio?>">
 

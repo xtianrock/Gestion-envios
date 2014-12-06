@@ -17,7 +17,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 define("RUTA_ABS", realpath(__DIR__.'/..'));
 define("URL_APP", "http://".$_SERVER["HTTP_HOST"]."/Gestion-envios");
 
-if (!file_exists("-config.php"))
+if (!file_exists("-Config.php"))
 {
     require_once RUTA_ABS."/Install/index.php";
 }
@@ -28,7 +28,7 @@ else
     require_once(RUTA_ABS."/App/Modelos/ModeloEnvios.php");
     require_once(RUTA_ABS."/App/Modelos/ModeloUsuarios.php");
     require_once(RUTA_ABS."/App/lib/DatabaseProvider.php");
-    require_once(RUTA_ABS."/App/config.php");
+    require_once(RUTA_ABS . "/App/Config.php");
     require_once(RUTA_ABS."/App/lib/Tratamiento-form.php");
     require_once(RUTA_ABS."/App/helpers/crea-select-busqueda.php");
     require_once(RUTA_ABS."/App/helpers/carga-plantilla.php");

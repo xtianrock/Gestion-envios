@@ -10,7 +10,13 @@
 
 
 require_once(RUTA_ABS."/Install/Controlador.php");
+require_once(RUTA_ABS."/Install/ModeloInstall.php");
 require_once(RUTA_ABS."/App/lib/DatabaseProvider.php");
+require_once(RUTA_ABS . "/App/Config.php");
+require_once(RUTA_ABS."/Install/helpers/helper.php");
+
+
+
 
 // enrutamiento
 $map = array(

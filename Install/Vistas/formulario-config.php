@@ -14,7 +14,11 @@ ob_start();?>
     <p>Usuario: <input type="text" name="usuario" value="<?=$datos['usuario'] ?>" required="required" /></p>
     <p>Contraseña: <input type="password" name="clave" value="<?=$datos['clave']?>"/></p>
     <input type="submit" value="Siguiente" />
+    <?php if(isset($datos['mensaje']))
+        echo "<br /><p class='mensaje'>".$datos["mensaje"]."</p><br />";
+    ?>
 </form>
+
 
 <?php $contenido=ob_get_clean();
 require_once RUTA_ABS.'/Install/Vistas/layout.php'?>

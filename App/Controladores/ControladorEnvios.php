@@ -139,7 +139,7 @@ class ControladorEnvios {
         if (isset($_GET['nueva'])) {
             unset($_SESSION['criteriosBusqueda']);
         }
-        if (isset($_POST['enviar-form']))
+        if (isset($_POST['confirmacion']))
         {
             TratamientoFormularios::rellenarCamposConPost($datos);
             $datosErroneos=TratamientoFormularios::validarArray(ControladorEnvios::$criterios);
@@ -162,9 +162,9 @@ class ControladorEnvios {
         $modelo=new Modelo();
         $accion="eliminado";
         $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
-        if (isset($_POST['enviar-form']))
+        if (isset($_POST['confirmacion']))
         {
-            if ($_POST['enviar-form'] == 'Si') {
+            if ($_POST['confirmacion'] == 'Si') {
                $modelo->eliminar('envios','codigo_envio',$codigoEnvio);
             }
             header('Location: '.URL_APP.'/App/index.php?operacion=listar');
@@ -178,9 +178,9 @@ class ControladorEnvios {
         $modelo=new Modelo();
         $accion="marcado como recibido";
         $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
-        if (isset($_POST['enviar-form']))
+        if (isset($_POST['confirmacion']))
         {
-            if ($_POST['enviar-form'] == 'Si') {
+            if ($_POST['confirmacion'] == 'Si') {
                 $modelo=new Modelo();
                 $modelo->confirmar($codigoEnvio,date("y-m-d"));
             }
@@ -215,7 +215,7 @@ class ControladorEnvios {
             $codigoEnvio = $_POST['codigo-envio'];
             ControladorEnvios::CompruebaEnvio($codigoEnvio, $modelo, $accion);
             return $codigoEnvio;
-        } elseif (isset($_POST['enviar-form'])) {
+        } elseif (isset($_POST['confirmacion'])) {
             $codigoEnvio = $_POST['cod'];
             return $codigoEnvio;
         } else {
