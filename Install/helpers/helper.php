@@ -6,7 +6,14 @@
  * Time: 17:13
  */
 
-
+/**
+ * Divide el archi de base de datos en consultas simples y las ejecuta.
+ *
+ * @param $fichero
+ * @param $modelo
+ *
+ * @return mixed
+ */
 function importSql($fichero, $modelo) {
     $consultas = file($fichero);
     foreach ($consultas as $key => $consulta) {

@@ -6,6 +6,11 @@
  * Time: 16:38
  */
 
+/**
+ * Class ControladorEnvios
+ *
+ * Contiene las diferentes funciones que actuan como controladores.
+ */
 class ControladorEnvios {
 
     public static  $criterios = array(
@@ -33,10 +38,21 @@ class ControladorEnvios {
             'filter'=> FILTER_CALLBACK,
             'options' => "TratamientoFormularios::alfanumericoSimbolos"),
     );
+
+    /**
+     * Funcion encargada de mostrar el home d ela aplicacion.
+     */
     public static function  inicio()
     {
-
+        /* codigo a ejecutar cuando se pulse home*/
     }
+
+    /**
+     * Controlador encargado de mostrar los datos de los envios.
+     *
+     * @param null $criteriosBusqueda Criterios de busqueda para mostrar solo determinados datos.
+     * @param null $accion Podra ser buscar o listar.
+     */
     public static function listarEnvio($criteriosBusqueda=null,$accion=null)
     {
         $modelo=new Modelo();
@@ -60,10 +76,11 @@ class ControladorEnvios {
         $envios=$modelo->obtenerEnvios($inicio,$tamanoPagina,$condicionesSql);
         require RUTA_ABS.'\App\Vistas\paginacion.php';
         require RUTA_ABS.'\App\Vistas\listado-envios.php';
-
-
-
     }
+
+    /**
+     * Controlador encargado de insertar envios en la base de datos.
+     */
     public static function insertarEnvio()
     {
         $modelo=new Modelo();
@@ -112,22 +129,11 @@ class ControladorEnvios {
         require RUTA_ABS.'\App\Vistas\ingreso-form.php';
     }
 
-
-
-  /*  public function detalleEnvio()
-    {
-        if(isset($_GET["id"]))
-        {
-            $id=$_GET["id"];
-            $modelo=new Modelo();
-            $detalles=$modelo->obtenerDatosModificables($id);
-            $estados=$modelo->devuelveEstados();
-            require $GLOBALS["rutaAbsoluta"].'\App\Vistas\ingreso-form.php';
-        }
-
-    }
-*/
-
+    /**
+     * Controlador que lleva a cabo la modificacion de un envio.
+     *
+     * Se accederá a el mediante el menu principal o mediante el boton modificar de cada uno de los envios.
+     */
     public static function modificarEnvio()
     {
         // Le indica a la vista que se esta llevando a cabo una modificacion
@@ -157,6 +163,12 @@ class ControladorEnvios {
         require RUTA_ABS.'\App\Vistas\ingreso-form.php';
     }
 
+
+    /**
+     * Controlador encargado de eliminar envios.
+     *
+     * Se accederá a el mediante el menu principal o mediante el boton modificar de cada uno de los envios.
+     */
     public static function eliminarEnvio()
     {
         $modelo=new Modelo();
@@ -173,6 +185,11 @@ class ControladorEnvios {
     }
 
 
+    /**
+     * Controlador encargado de marcar los envios como recibido.
+     *
+     * Se accederá a el mediante el menu principal o mediante el boton modificar de cada uno de los envios.
+     */
     public static function confirmarRecepcion()
     {
         $modelo=new Modelo();
@@ -190,7 +207,15 @@ class ControladorEnvios {
     }
 
 
-
+    /**
+     * Se ocupa de comprobar la existencia de un envio.
+     *
+     * Sera llamado por las funciones modificar,eliminar y confirmarRecepcion.
+     *
+     * @param $codigoEnvio
+     * @param $modelo
+     * @param $accion
+     */
     public static function CompruebaEnvio($codigoEnvio, $modelo,$accion)
     {
         $codigoValidado = TratamientoFormularios::validarCodigo($codigoEnvio);
@@ -202,6 +227,8 @@ class ControladorEnvios {
     }
 
     /**
+     * Permite obtener el codigo de envio con el que se trabajara en modificar, eliminar y confirmarRecepcion.
+     *
      * @param $modelo
      * @param $accion
      */
@@ -225,6 +252,11 @@ class ControladorEnvios {
     }
 
 
+    /**
+     * Permite realizar busquedas dentro de los envios.
+     *
+     * Incluye un array con los criterios de busqueda para cada campo.
+     */
     public static function buscarEnvio()
     {
         $modelo=new Modelo();

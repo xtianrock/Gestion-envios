@@ -5,6 +5,19 @@
  * Date: 25/11/2014
  * Time: 19:55
  */
+
+/**
+ * Crea las disntntas listas desplegables del apartado buscar.
+ *
+ * @param       $nombre
+ * @param       $datos
+ * @param null  $valorPorDefecto
+ * @param null  $nullValue
+ * @param array $camposDatos
+ *
+ * @return string
+ */
+
 function creaListaDesplegable(
     $nombre,
     $datos,

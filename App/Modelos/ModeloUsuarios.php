@@ -6,10 +6,18 @@
  * Time: 16:17
  */
 
+/**
+ * Class ModeloUsuarios.
+ *
+ * Contiene la logica de negociio relacionada con los usuarios
+ */
 class ModeloUsuarios {
 
     protected $conexion;
 
+    /**
+     *Constructor de la clase.
+     */
     public function __construct()
     {
 
@@ -22,19 +30,41 @@ class ModeloUsuarios {
         $this->conexion = $mvc_bd_conexion;
     }
 
-    public function comprobarUsuario($nombre,$password)
+    /**
+     * Comprueba si existe un usuario con ese nombre y contraseña.
+     *
+     * @param $nombre
+     * @param $password
+     *
+     * @return mixed
+     */
+    public function comprobarUsuario($nombre)
     {
-        $consulta="select * from usuarios where nombre='$nombre' and password='$password'";
+        $consulta="select * from usuarios where nombre='$nombre'";
         return $this->conexion->executeScalar($consulta);
 
     }
 
+    /**
+     * Obtiene los datos de los usuarios existentes.
+     *
+     * @return mixed
+     */
     public function obtenerUsuarios()
     {
         $consulta="select * from usuarios";
         return $this->conexion->execute($consulta);
     }
 
+    /**
+     * Inserta un usuario en la bd.
+     *
+     * @param $nombre
+     * @param $password
+     * @param $privilegios
+     *
+     * @return string
+     */
     public function insertaUsuario($nombre,$password,$privilegios)
     {
         $consulta="insert into usuarios values('$nombre','$password','$privilegios')";
@@ -50,6 +80,13 @@ class ModeloUsuarios {
         return $mensaje;
     }
 
+    /**
+     * Elimina un suario dado de la bd.
+     *
+     * @param $usuario
+     *
+     * @return string
+     */
     public function eliminar($usuario)
     {
         $consulta="delete from usuarios where nombre='$usuario'";

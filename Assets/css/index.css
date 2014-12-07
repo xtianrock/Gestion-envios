@@ -11,10 +11,13 @@ body
 
 #titulo
 {
+    float: left;
+
     color: #ffffff;
     font-size: 2.5em;
     margin: 20px auto;
     cursor: default;
+
 }
 
 .cabecera1
@@ -154,6 +157,10 @@ label
     -ms-user-select: none; /* IE10+ */
     line-height: 36px;
     text-align: center;
+}
+.lista .iconos
+{
+    float: right;
 }
 .lista-cabecera
 {

@@ -6,10 +6,18 @@
  * Time: 18:51
  */
 
+
+/**
+ * Class Controlador.
+ *
+ * Contiene los metodos que actuan como controladores en la instalacion.
+ */
 class Controlador {
 
 
-
+    /**
+     * Advierte al usuario de que comienza la instalacion.
+     */
     public static function instalar1()
     {
         if(isset($_POST["continuar"]))
@@ -20,10 +28,12 @@ class Controlador {
         require_once(RUTA_ABS.'/Install/Vistas/instalador.php');
     }
 
+
+    /**
+     * Solicita al usuario los datos de la base de datos y verifica la conexion.
+     */
     public static function instalar2()
     {
-
-
         $datos = [
                 'servidor' => '',
                 'bd' => '',
@@ -44,6 +54,10 @@ class Controlador {
         require_once(RUTA_ABS.'/Install/Vistas/formulario-config.php');
     }
 
+
+    /**
+     * Comprueba si existen tablas y pide confirmacion para borrarlas.
+     */
     public static function instalar3()
     {
         $modelo = new ModeloInstall();
@@ -68,6 +82,9 @@ class Controlador {
 
     }
 
+    /**
+     * Creara las tablas y volcara los datos de las mismas.
+     */
     public static function instalar4()
     {
         $datos["texto"]="Se procedera a crear las tablas.";
@@ -87,6 +104,9 @@ class Controlador {
         require_once(RUTA_ABS.'/Install/Vistas/instalador.php');
     }
 
+    /**
+     * Genera el archivo config.php y finaliza la instalacion.
+     */
     public static function instalar5()
     {
         if(isset($_POST["continuar"]))

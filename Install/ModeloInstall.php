@@ -6,11 +6,20 @@
  * Time: 14:20
  */
 
+
+/**
+ * Class ModeloInstall.
+ *
+ * Clase que alberga la logica de negocio del instalador.
+ */
 class ModeloInstall {
 
 
     protected $conexion;
 
+    /**
+     * Constructor de la clase.
+     */
     public function __construct()
     {
 
@@ -23,6 +32,11 @@ class ModeloInstall {
         $this->conexion = $mvc_bd_conexion;
     }
 
+    /**
+     * Comprueba si existen tablas en la bd dada.
+     *
+     * @return mixed
+     */
     public function existenTablas()
     {
         $consulta="SELECT table_name FROM information_schema.tables WHERE table_schema = '{$_SESSION['parametros']['bd']}'";
@@ -30,6 +44,12 @@ class ModeloInstall {
         return $result;
     }
 
+
+    /**
+     * Elimina todas las tablas de la bd.
+     *
+     * @param $tablas
+     */
     public function eliminarTablas($tablas)
     {
         foreach ($tablas as $tabla)
@@ -40,6 +60,13 @@ class ModeloInstall {
 
     }
 
+    /**
+     * Ejecuta una a una las consultas que se le pasan.
+     *
+     * @param $consultas
+     *
+     * @return bool
+     */
     public function importarDb($consultas)
     {
         foreach ($consultas as $consulta)

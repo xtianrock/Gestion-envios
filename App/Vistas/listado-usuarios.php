@@ -8,16 +8,16 @@
 ob_start();?>
     <div class="lista-cabecera">
         <span class="datos">Nombre</span>
-        <span class="datos">Contrase&ntilde;a</span>
         <span class="datos">Permisos</span>
+        <span class="datos">Contrase&ntilde;a</span>
     </div>
 <?php
 if (isset($usuarios)):
 foreach ($usuarios as $usuario): ?>
 <div class="lista">
     <span class="datos"><?=$usuario['nombre']?></span>
-    <span class="datos"><?=$usuario['password']?></span>
     <span class="datos"><?=$usuario['permisos']?></span>
+    <span class="datos"><?=$usuario['password']?></span>
     <div class="iconos">
         <a href="?operacion=eliminar-usuario&usuario=<?=$usuario['nombre']?>" title="Eliminar"><span class="boton"><img class="icono" src="<?=URL_APP?>/Assets/img/icons/eliminar.png"></span></a>
     </div>

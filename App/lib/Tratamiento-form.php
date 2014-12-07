@@ -9,7 +9,13 @@
 class TratamientoFormularios {
 
 
-    //devuelve un array con los posibles errores
+    /**
+     * Funcion encargada de validar datos que llegan por post.
+     *
+     * @param $criterios array con los criterios para el filtrado
+     *
+     * @return array array con los datos no validos.
+     */
   static public function validarArray($criterios)
     {
         $datosValidados = filter_input_array(INPUT_POST,$criterios);
@@ -24,12 +30,28 @@ class TratamientoFormularios {
         }
         return $datosErroneos;
     }
+
+    /**
+     * Valida codigo de envio.
+     *
+     * @param $codigoEnvio
+     *
+     * @return mixed
+     */
     public static function validarCodigo($codigoEnvio)
     {
         $opciones=array("options"=>
                 array("min_range"=>0, "max_range"=>99999999));
         return filter_var($codigoEnvio,FILTER_VALIDATE_INT,$opciones);
     }
+
+    /**
+     * Valida codigo postal.
+     *
+     * @param $valor
+     *
+     * @return bool
+     */
     static function cp($valor)
     {
         //El código postal en España son cinco números. Los dos primeros van del 01 al 52 (las provincias)
@@ -44,6 +66,14 @@ class TratamientoFormularios {
             return false;
         }
     }
+
+    /**
+     * Valida codigo provincias.
+     *
+     * @param $valor
+     *
+     * @return bool
+     */
     static function provincias($valor)
     {
         //Las provincias en España van numeradas desde eñ 01 hasta el 52.
@@ -57,6 +87,14 @@ class TratamientoFormularios {
             return false;
         }
     }
+
+    /**
+     * Valida campos de texto.
+     *
+     * @param $valor
+     *
+     * @return bool
+     */
    static function alfabetico($valor)
     {
         $permitidos = '/^[A-Z üÜáéíóúÁÉÍÓÚñÑ]{1,50}$/i';
@@ -76,6 +114,14 @@ class TratamientoFormularios {
             }
         }
     }
+
+    /**
+     * Valida campos alfanumericos y co ciertos simbolos.
+     *
+     * @param $valor
+     *
+     * @return bool
+     */
     static function alfanumericoSimbolos($valor)
     {
         $permitidos = '/^[A-Z 0-9 üÜáéíóúÁÉÍÓÚñÑ,.-ºª"]{1,150}$/i';
@@ -95,6 +141,14 @@ class TratamientoFormularios {
             }
         }
     }
+
+    /**
+     * Valida campos numericos.
+     *
+     * @param $valor
+     *
+     * @return bool
+     */
    static function numerico($valor)
     {
         if(empty($valor))
@@ -113,6 +167,14 @@ class TratamientoFormularios {
             }
         }
     }
+
+    /**
+     * Valida campos de tipo fecha.
+     *
+     * @param $input
+     *
+     * @return bool
+     */
     static function fecha($input)
     {
         $input_array= explode("-",$input);
@@ -137,6 +199,12 @@ class TratamientoFormularios {
 
 
     }
+
+    /**
+     * Rellena un array con los datos que llegan por post.
+     *
+     * @param $datos
+     */
    static public function rellenarCamposConPost(& $datos)
     {
         foreach ($datos as $nombreCampo=>$valor)
@@ -144,6 +212,12 @@ class TratamientoFormularios {
             $datos[$nombreCampo] = $_POST[$nombreCampo."-form"];
         }
     }
+
+    /**
+     * Rellena un array con unos valores dados.
+     *
+     * @param $datos
+     */
    static public function rellenarValorDefecto(& $datos)
     {
         foreach ($datos as $nombreCampo=>$valor)

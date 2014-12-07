@@ -29,28 +29,86 @@ abstract class DatabaseProvider
 }
 class MySqlProvider extends DatabaseProvider
 {
+    /**
+     * Conecta con la mysqli
+     *
+     * @param $host
+     * @param $user
+     * @param $pass
+     * @param $dbname
+     *
+     * @return \mysqli
+     */
     public function connect($host, $user, $pass, $dbname){
         $this->resource = @new mysqli($host, $user, $pass, $dbname);
         return  $this->resource;
     }
+
+    /**
+     * Obtiene el codigo de error.
+     *
+     * @return int
+     */
     public function getErrorNo(){
         return mysqli_errno($this->resource);
     }
+
+    /**
+     * Obtiene el texto del error.
+     *
+     * @return string
+     */
     public function getError(){
         return mysqli_error($this->resource);
     }
+
+    /**
+     * Ejecuta una consulta
+     *
+     * @param $q -consulta a ejecutar
+     *
+     * @return bool|\mysqli_result
+     */
     public function query($q){
         return mysqli_query($this->resource,$q);
     }
+
+    /**
+     * Obtiene el siguiente registro.
+     *
+     * @param $result
+     *
+     * @return array|null
+     */
     public function fetchAssoc($result){
         return mysqli_fetch_assoc($result);
     }
+
+    /**
+     * Devuelve si esta conectado o no.
+     *
+     * @return bool
+     */
     public function isConnected(){
         return !is_null($this->resource);
     }
+
+    /**
+     * Evita la inyeccion de codigo.
+     *
+     * @param $var
+     *
+     * @return string
+     */
     public function escape($var){
         return mysqli_real_escape_string($this->resource,$var);
     }
+
+    /**
+     * Devuelve el indice del ultimo elemento insertado.
+     *
+     * @return mixed
+     */
     public function insert_id()
     {
         return $this->resource->insert_id;
@@ -62,6 +120,16 @@ class DataBaseLayer
     private $params;
     private static $_con;
 
+    /**
+     * Constructor de la capa de abstracion.
+     *
+     * Es privado para que no puede ser llamado desde fuera de la clase.
+     *
+     * @param $provider
+     * @param $parametros -se usa para el instalador, cuando aun no existe Config.php
+     *
+     * @throws \Exception
+     */
     private function __construct($provider,$parametros){
         if(!class_exists($provider)){
             throw new Exception("El proveedor especificado no ha sido implentado o añadido.");
@@ -81,6 +149,17 @@ class DataBaseLayer
             /*Controlar error de conexion*/
         }
     }
+
+    /**
+     * Obtiene la conexion.
+     *
+     * Si no existe crea una nueva.
+     *
+     * @param      $provider
+     * @param null $parametros
+     *
+     * @return mixed
+     */
     public static function getConnection($provider,$parametros=null){
         if(self::$_con){
             return self::$_con;
@@ -93,6 +172,14 @@ class DataBaseLayer
         }
     }
 
+    /**
+     * Comprueba si los datos de conexion proporcionados son validos.
+     *
+     * @param $provider
+     * @param $parametros
+     *
+     * @return bool
+     */
     public static function tryConnection($provider,$parametros)
     {
         $conexion=new $provider();
@@ -107,11 +194,25 @@ class DataBaseLayer
         }
     }
 
+    /**
+     * @param $coincidencias
+     *
+     * @return mixed
+     */
     private function replaceParams($coincidencias){
         $b=current($this->params);
         next($this->params);
         return $b;
     }
+
+    /**
+     * Prepara la consulta para evitar inyeccion de codigo.
+     *
+     * @param $sql
+     * @param $params
+     *
+     * @return mixed
+     */
     private function prepare($sql, $params){
         for($i=0;$i<sizeof($params); $i++){
             if(is_bool($params[$i])){
@@ -132,6 +233,15 @@ class DataBaseLayer
 
         return $q;
     }
+
+    /**
+     * Ejecuta una consulta que no devolvera valores.
+     *
+     * @param      $q
+     * @param null $params
+     *
+     * @return mixed
+     */
     public function sendQuery($q, $params=null){
         $query = $this->prepare($q, $params);
         $result = $this->provider->query($query);
@@ -140,6 +250,15 @@ class DataBaseLayer
         }
         return $result;
     }
+
+    /**
+     * Realiza una consulta que devolvera un valor unico.
+     *
+     * @param      $q
+     * @param null $params
+     *
+     * @return mixed|null
+     */
     public function executeScalar($q, $params=null){
         $result = $this->sendQuery($q, $params);
         if(!is_null($result)){
@@ -154,6 +273,15 @@ class DataBaseLayer
         }
         return null;
     }
+
+    /**
+     * Realiza una consulta que devolvera un array de valores
+     *
+     * @param      $q
+     * @param null $params
+     *
+     * @return array|null
+     */
     public function execute($q, $params=null){
         $result = $this->sendQuery($q, $params);
         if(is_object($result)){
@@ -166,14 +294,30 @@ class DataBaseLayer
         return null;
 
     }
+
+    /**
+     * Obtiene el indice del ultimo elemento
+     *
+     * @return mixed
+     */
     public function lastIndex()
     {
         return $this->provider->insert_id();
     }
+
+    /**
+     * Obtiene el error
+     *
+     * @return mixed
+     */
     public function obtenerError()
     {
         return $this->provider->getError();
     }
+
+    /**
+     * Cierra la conexion con la base de datos.
+     */
     public function disconnect()
     {
         //mysql_close($this->provider);

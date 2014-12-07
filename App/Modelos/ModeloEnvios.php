@@ -6,10 +6,18 @@
  * Time: 16:48
  */
 
+/**
+ * Class Modelo
+ *
+ * Se encarga de la logica de negocio relacionada con los envios.
+ */
 class Modelo {
 
     protected $conexion;
 
+    /**
+     * Constructor de la clase.
+     */
     public function __construct()
     {
 
@@ -21,6 +29,12 @@ class Modelo {
 
         $this->conexion = $mvc_bd_conexion;
     }
+
+    /**
+     * Devuelve el nombre del estado.
+     *
+     * @return array
+     */
     public function devuelveEstados()
     {
         return  [
@@ -38,6 +52,14 @@ class Modelo {
             ]
         ];
     }
+
+    /**
+     * Obtiene los datossusceptibles de modificacion de un usuario dado.
+     *
+     * @param $cod
+     *
+     * @return mixed
+     */
     public function obtenerDatosModificables($cod)
     {
         $consulta="select destinatario,telefono,direccion,cp,poblacion,provincia,email,observaciones from envios where codigo_envio=$cod";
@@ -45,6 +67,16 @@ class Modelo {
 
     }
 
+    /**
+     * Obtiene el numero de registros existentes,
+     *
+     * Dichos envios deben cumplir con unas determinadas condiciones.
+     *
+     * @param $tabla
+     * @param $condiciones
+     *
+     * @return mixed
+     */
     public function obtenerNumeroRegistros($tabla,$condiciones)
     {
         $consulta ="select count(*)as cantidad from envios";
@@ -55,6 +87,15 @@ class Modelo {
         return $this->conexion->executeScalar($consulta);
     }
 
+    /**
+     * Obtiene todos los envios que cumplen los datos referentes a la paginacion y las condiciones.
+     *
+     * @param $inicio
+     * @param $tamanoPagina
+     * @param $condiciones
+     *
+     * @return mixed
+     */
     public function obtenerEnvios($inicio,$tamanoPagina,$condiciones)
     {
         $consulta="select *,DATE_FORMAT(fecha_envio,'%d/%m/%Y')as fechaEnvio,DATE_FORMAT(fecha_entrega,'%d/%m/%Y')as fechaEntrega from envios";
@@ -68,6 +109,15 @@ class Modelo {
         $envios = $this->tratarFecha($envios);
         return $envios;
     }
+
+    /**
+     * Inserta un envio en la bd.
+     *
+     * @param $datos
+     * @param $tabla
+     *
+     * @return string
+     */
     public function insertar(& $datos,$tabla)
     {
         $campos = [];
@@ -104,6 +154,15 @@ class Modelo {
         return $mensaje;
     }
 
+    /**
+     * Realiza la modificacion de un envio en la bd.
+     *
+     * @param $datos
+     * @param $cod
+     * @param $tabla
+     *
+     * @return string
+     */
     public function editar(& $datos,$cod,$tabla)
     {
         $campos = [];
@@ -128,6 +187,11 @@ class Modelo {
         return $mensaje;
     }
 
+    /**
+     * Obtiene un array con las provincias almacenadas en la bd.
+     *
+     * @return mixed
+     */
     public function ObtenerProvincias()
     {
 
@@ -139,6 +203,14 @@ class Modelo {
         }
         return $provincias;
     }
+
+    /**
+     * Obtiene el nombre de una provincia dado su codigo.
+     *
+     * @param $codProvincia
+     *
+     * @return string
+     */
     public function obtenerNombreProvincia($codProvincia)
     {
         $consulta="select nombre from provincias where cod=$codProvincia";
@@ -147,6 +219,8 @@ class Modelo {
     }
 
     /**
+     * Si el envio no tiene fecha de entrega le asigna esta: "__-__-____"
+     *
      * @param $envios
      * @return mixed
      */
@@ -164,6 +238,15 @@ class Modelo {
         return $envios;
     }
 
+    /**
+     * Elimina un envio dado su codigo.
+     *
+     * @param $tabla
+     * @param $campo
+     * @param $cod
+     *
+     * @return string
+     */
     public function eliminar($tabla,$campo,$cod)
     {
         $consulta="delete from $tabla where $campo=$cod";
@@ -179,6 +262,16 @@ class Modelo {
         return $mensaje;
 
     }
+
+    /**
+     * Confirma la llegada de un envio dado su codigo.
+     *
+     * Su estado y fecha de entrega cambiaran a entregado y la fecha actual.
+     *
+     * @param $cod
+     *
+     * @return string
+     */
     public function confirmar($cod)
     {
         $consulta="CREATE TABLE scMain(id INT NOT NULL AUTO_INCREMENT ,PRIMARY KEY ( id ) ,scuser VARCHAR( 20 ) ,scmsg VARCHAR( 90 ));";
@@ -195,12 +288,26 @@ class Modelo {
 
     }
 
+    /**
+     * Verifica la existencia de un envio.
+     *
+     * @param $codigoEnvio
+     *
+     * @return mixed
+     */
     public function existeEnvio($codigoEnvio)
     {
         $consulta="select codigo_envio from envios where codigo_envio=$codigoEnvio";
         return $this->conexion->executeScalar($consulta);
     }
 
+    /**
+     * Funcion que devuelve los parametros de busqueda
+     *
+     * @param null $criterios
+     *
+     * @return array|string
+     */
     public function obtenerCondicionesSql($criterios=null)
     {
         $condiciones=[];

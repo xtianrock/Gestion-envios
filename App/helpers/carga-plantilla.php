@@ -6,6 +6,15 @@
  * Time: 17:47
  */
 
+
+/**
+ * Carga las distintas plantillas.
+ *
+ * @param       $rutaFichero
+ * @param array $variablesDeVista
+ *
+ * @return string
+ */
 function & CargaVista($rutaFichero, array  $variablesDeVista=NULL)
 {
 
