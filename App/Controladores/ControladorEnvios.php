@@ -55,10 +55,11 @@ class ControladorEnvios {
      */
     public static function listarEnvio($criteriosBusqueda=null,$accion=null)
     {
+        $titulo="Listado de envios";
         $modelo=new Modelo();
         $condicionesSql=$modelo->obtenerCondicionesSql($criteriosBusqueda);
         $numeroEnvios=$modelo->obtenerNumeroRegistros("envios",$condicionesSql)["cantidad"];
-        $tamanoPagina=10;
+        $tamanoPagina=Config::$paginas;
         $estados=$modelo->devuelveEstados();
         $provincias=$modelo->ObtenerProvincias();
         
@@ -83,6 +84,7 @@ class ControladorEnvios {
      */
     public static function insertarEnvio()
     {
+        $titulo="Insertar envio";
         $modelo=new Modelo();
         $accion="Insertar";
         $datos = array(
@@ -139,6 +141,7 @@ class ControladorEnvios {
         // Le indica a la vista que se esta llevando a cabo una modificacion
         //para que esta muestre un mensaje distinto en el boton del formulario
         $accion='Modificar';
+        $titulo="Modificar envio";
         $modelo=new Modelo();
         $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
         $datos=$modelo->obtenerDatosModificables($codigoEnvio);
@@ -171,6 +174,7 @@ class ControladorEnvios {
      */
     public static function eliminarEnvio()
     {
+        $titulo="Eliminar envio";
         $modelo=new Modelo();
         $accion="eliminado";
         $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
@@ -192,6 +196,7 @@ class ControladorEnvios {
      */
     public static function confirmarRecepcion()
     {
+        $titulo="Confirmar recepcion";
         $modelo=new Modelo();
         $accion="marcado como recibido";
         $codigoEnvio = ControladorEnvios::obtenerCodigoEnvio($modelo, $accion);
@@ -259,6 +264,7 @@ class ControladorEnvios {
      */
     public static function buscarEnvio()
     {
+        $titulo="Buscar envio";
         $modelo=new Modelo();
         $parametrosBusqueda=[
             "palabra" => [

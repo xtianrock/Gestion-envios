@@ -18,7 +18,7 @@
 <body>
 
 <section id="cabecera">
-    <?=CargaVista(RUTA_ABS.'/App/Vistas/header2.php');?>
+    <?=CargaVista(RUTA_ABS.'/App/Vistas/header.php');?>
 </section>
 
 <section id="principal">

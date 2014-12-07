@@ -61,5 +61,5 @@ ob_start();
     </form>
 
 <?php $contenido = ob_get_clean();
-$titulo="prueba";
+$titulo="Nuevo envio";
 require_once'layout.php';

@@ -155,7 +155,7 @@ INSERT INTO `provincias` (`cod`, `nombre`) VALUES
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
-  `password` varchar(10) COLLATE utf8_spanish_ci NOT NULL,
+  `password` varchar(40) COLLATE utf8_spanish_ci NOT NULL,
   `permisos` varchar(15) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
@@ -164,7 +164,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`nombre`, `password`, `permisos`) VALUES
-('admin', 'admin', 'administrador');
+('admin', 'd033e22ae348aeb5660fc2140aec35850c4da997', 'administrador');
 
 --
 -- Índices para tablas volcadas

@@ -12,7 +12,8 @@
 require_once(RUTA_ABS."/Install/Controlador.php");
 require_once(RUTA_ABS."/Install/ModeloInstall.php");
 require_once(RUTA_ABS."/App/lib/DatabaseProvider.php");
-require_once(RUTA_ABS."/Install/helpers/helper.php");
+require_once(RUTA_ABS . "/Install/helpers/importaBd.php");
+
 
 
 
@@ -23,7 +24,8 @@ $map = array(
     'instalar2' => array('controlador'=>'Controlador','metodo' =>'instalar2','titulo' =>'instalar'),
     'instalar3' => array('controlador'=>'Controlador','metodo' =>'instalar3','titulo' =>'instalar'),
     'instalar4' => array('controlador'=>'Controlador','metodo' =>'instalar4','titulo' =>'instalar'),
-    'instalar5' => array('controlador'=>'Controlador','metodo' =>'instalar5','titulo' =>'instalar'));
+    'instalar5' => array('controlador'=>'Controlador','metodo' =>'instalar5','titulo' =>'instalar'),
+    'instalar6' => array('controlador'=>'Controlador','metodo' =>'instalar6','titulo' =>'instalar'));
 
 
     // Parseo de la ruta

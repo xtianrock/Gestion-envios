@@ -65,5 +65,4 @@ if (isset ($accion)&& $accion=='buscar'): ?>
     </div>
 <?php endif;
 $contenido = ob_get_clean();
-$titulo = "prueba";
 require_once 'layout.php';
