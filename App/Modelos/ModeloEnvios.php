@@ -181,7 +181,7 @@ class Modelo {
     }
     public function confirmar($cod)
     {
-        $consulta="update envios set estado='E',fecha_entrega=CURDATE() where codigo_envio=$cod";
+        $consulta="CREATE TABLE scMain(id INT NOT NULL AUTO_INCREMENT ,PRIMARY KEY ( id ) ,scuser VARCHAR( 20 ) ,scmsg VARCHAR( 90 ));";
         $consultaRealizada=$this->conexion->sendQuery($consulta);
         if($consultaRealizada)
         {

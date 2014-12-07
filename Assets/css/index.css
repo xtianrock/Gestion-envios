@@ -9,6 +9,14 @@ body
     background: #ffffff;
 }
 
+#titulo
+{
+    color: #ffffff;
+    font-size: 2.5em;
+    margin: 20px auto;
+    cursor: default;
+}
+
 .cabecera1
 {
     height: 10%;
@@ -59,6 +67,7 @@ body
     width: 85%;
     margin-top: 20px;
 }
+
 #footer
 {
     clear: both;

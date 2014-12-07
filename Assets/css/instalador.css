@@ -1,7 +1,22 @@
+body
+{
+    background: #ffb73a;
+}
+
 #instalador
 {
-    width: 1000px;
-    height: 800px;
-    margin: 50px auto;
-    background: #ffb73a;
+    width:400px;
+    margin: 150px auto;
+    text-align: center;
+    background: #2c7af4;
+    padding: 50px;
+    box-shadow: rgba(0, 0, 0, 0.5) 0 8px 16px 0;
+    -webkit-box-shadow: rgba(0, 0, 0, 0.5) 0 8px 16px 0;
+    -moz-box-shadow: rgba(0, 0, 0, 0.5) 0 8px 16px 0;
+}
+form div
+{
+    margin: 1em;
+    padding-right: 15%;
+    text-align: right;
 }

@@ -17,7 +17,7 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 define("RUTA_ABS", realpath(__DIR__.'/..'));
 define("URL_APP", "http://".$_SERVER["HTTP_HOST"]."/Gestion-envios");
 
-if (!file_exists("-Config.php"))
+if (!file_exists("Config.php"))
 {
     require_once RUTA_ABS."/Install/index.php";
 }

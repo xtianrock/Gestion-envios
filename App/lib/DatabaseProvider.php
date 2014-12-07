@@ -62,27 +62,32 @@ class DataBaseLayer
     private $params;
     private static $_con;
 
-    private function __construct($provider){
+    private function __construct($provider,$parametros){
         if(!class_exists($provider)){
             throw new Exception("El proveedor especificado no ha sido implentado o añadido.");
+        }
+        elseif($parametros)
+        {
+        $this->provider = new $provider;
+        $this->provider->connect($parametros["servidor"],$parametros["usuario"],$parametros["clave"],$parametros["bd"]);
         }
         else
         {
             $this->provider = new $provider;
-            $this->provider->connect(Config::$hostname,Config::$usuario,Config::$clave,Config::$nombre);
+            $this->provider->connect(Config::$hostname,Config::$usuario,Config::$clave,Config::$bd);
         }
 
         if(!$this->provider->isConnected()){
             /*Controlar error de conexion*/
         }
     }
-    public static function getConnection($provider){
+    public static function getConnection($provider,$parametros=null){
         if(self::$_con){
             return self::$_con;
         }
         else{
             $class = __CLASS__;
-            self::$_con = new $class($provider);
+            self::$_con = new $class($provider,$parametros);
             return self::$_con;
 
         }
@@ -94,12 +99,10 @@ class DataBaseLayer
         $conexion=$conexion->connect($parametros["servidor"],$parametros["usuario"],$parametros["clave"],$parametros["bd"]);
         if (!$conexion->connect_error)
         {
-            echo "existe";
             return true;
         }
         else
         {
-            echo "no existe";
             return false;
         }
     }

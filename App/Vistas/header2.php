@@ -8,6 +8,7 @@
 ?>
 <div class="cabecera1"></div>
 <div class="cabecera2">
+    <h1 id="titulo">KeNoLLega S.L.</h1>
     <div class="controles-cabecera">
         <?php if(isset($_SESSION["usuario"])):?>
             <a href="?operacion=logout" title="Logout">

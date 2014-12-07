@@ -18,6 +18,7 @@ function importSql($fichero, $modelo) {
 
     $consultas = implode(" ", $consultas);
     $consultas = explode(";", $consultas);
+    array_pop($consultas);
     return $modelo->importarDb($consultas);
 
 }

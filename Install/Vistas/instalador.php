@@ -8,8 +8,16 @@
 ob_start();?>
 
 <div>
-    <h2>Bienvenido al instalador de la App</h2>
-    <a href="<?=URL_APP.'/App/index.php?operacion=instalar2'?>">Continuar</a>
+    <h2>Instalador de KeNoLLega S.L</h2>
+    <?php if(isset($datos['texto']))
+        echo "<br /><p class='texto'>".$datos["texto"]."</p><br />";
+    if(isset($datos['mensaje']))
+        echo "<br /><p class='mensaje'>".$datos["mensaje"]."</p><br />";
+    ?>
+    <form action="" method="POST">
+        <input type="submit" name="continuar" value="Siguiente" />
+
+    </form>
 </div>
 
 <?php $contenido=ob_get_clean();

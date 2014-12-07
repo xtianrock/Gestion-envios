@@ -1,9 +1,27 @@
-
+-- phpMyAdmin SQL Dump
+-- version 4.2.11
+-- http://www.phpmyadmin.net
+--
+-- Servidor: 127.0.0.1
+-- Tiempo de generación: 06-12-2014 a las 17:17:35
+-- Versión del servidor: 5.6.21
+-- Versión de PHP: 5.6.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
 
 
+
+
+--
+-- Base de datos: `envios`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `envios`
+--
 
 CREATE TABLE IF NOT EXISTS `envios` (
 `codigo_envio` int(8) NOT NULL,
@@ -19,6 +37,10 @@ CREATE TABLE IF NOT EXISTS `envios` (
   `fecha_entrega` date DEFAULT NULL,
   `observaciones` text COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB AUTO_INCREMENT=37 DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
+
+--
+-- Volcado de datos para la tabla `envios`
+--
 
 INSERT INTO `envios` (`codigo_envio`, `destinatario`, `telefono`, `direccion`, `poblacion`, `cp`, `provincia`, `email`, `estado`, `fecha_envio`, `fecha_entrega`, `observaciones`) VALUES
 (1, 'Maria', '959355185', 'gorrion nÂº 38', 'aljaraque', '21110', '01', 'xtian_c_v@hotmail.com', 'E', '2014-11-24', '2014-12-03', ''),
@@ -56,12 +78,20 @@ INSERT INTO `envios` (`codigo_envio`, `destinatario`, `telefono`, `direccion`, `
 (35, 'asd', '626047737', 'Avenida Bulevar de los Azaharaes nÂº 27', 'Aljaraque', '21110', '21', 'mconceglieri@hotmail.com', 'P', '2014-11-27', NULL, ''),
 (36, 'asd', '626047737', 'Avenida Bulevar de los Azaharaes nÂº 27', 'Aljaraque', '21110', '21', 'mconceglieri@hotmail.com', 'E', '2014-11-27', '2014-11-27', '');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `provincias`
+--
+
 CREATE TABLE IF NOT EXISTS `provincias` (
   `cod` char(2) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL COMMENT 'Código de la provincia de dos digitos',
   `nombre` varchar(50) CHARACTER SET utf8 COLLATE utf8_spanish_ci NOT NULL DEFAULT '' COMMENT 'Nombre de la provincia'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Provincias de españa 99 para seleccionar a Nacional';
 
-
+--
+-- Volcado de datos para la tabla `provincias`
+--
 
 INSERT INTO `provincias` (`cod`, `nombre`) VALUES
 ('01', 'Alava'),
@@ -117,6 +147,11 @@ INSERT INTO `provincias` (`cod`, `nombre`) VALUES
 ('49', 'Zamora'),
 ('50', 'Zaragoza');
 
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `usuarios`
+--
 
 CREATE TABLE IF NOT EXISTS `usuarios` (
   `nombre` varchar(50) COLLATE utf8_spanish_ci NOT NULL,
@@ -124,25 +159,51 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `permisos` varchar(15) COLLATE utf8_spanish_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_spanish_ci;
 
-
+--
+-- Volcado de datos para la tabla `usuarios`
+--
 
 INSERT INTO `usuarios` (`nombre`, `password`, `permisos`) VALUES
 ('admin', 'admin', 'administrador');
 
+--
+-- Índices para tablas volcadas
+--
+
+--
+-- Indices de la tabla `envios`
+--
 ALTER TABLE `envios`
  ADD PRIMARY KEY (`codigo_envio`), ADD KEY `indice_prov` (`provincia`);
 
-
+--
+-- Indices de la tabla `provincias`
+--
 ALTER TABLE `provincias`
  ADD PRIMARY KEY (`cod`), ADD KEY `nombre` (`nombre`);
 
-
+--
+-- Indices de la tabla `usuarios`
+--
 ALTER TABLE `usuarios`
  ADD PRIMARY KEY (`nombre`);
 
+--
+-- AUTO_INCREMENT de las tablas volcadas
+--
+
+--
+-- AUTO_INCREMENT de la tabla `envios`
+--
 ALTER TABLE `envios`
 MODIFY `codigo_envio` int(8) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=37;
+--
+-- Restricciones para tablas volcadas
+--
 
+--
+-- Filtros para la tabla `envios`
+--
 ALTER TABLE `envios`
 ADD CONSTRAINT `fk_prov` FOREIGN KEY (`provincia`) REFERENCES `provincias` (`cod`);
 

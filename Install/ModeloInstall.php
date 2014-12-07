@@ -14,7 +14,7 @@ class ModeloInstall {
     public function __construct()
     {
 
-        $mvc_bd_conexion = DataBaseLayer::getConnection("MySqlProvider");
+        $mvc_bd_conexion = DataBaseLayer::getConnection("MySqlProvider",$_SESSION["parametros"]);
 
         if (!$mvc_bd_conexion) {
             die('No ha sido posible realizar la conexión con la base de datos: ' . $mvc_bd_conexion->obtenerError());
@@ -27,9 +27,6 @@ class ModeloInstall {
     {
         $consulta="SELECT table_name FROM information_schema.tables WHERE table_schema = '{$_SESSION['parametros']['bd']}'";
         $result=$this->conexion->execute($consulta);
-        echo '<pre>';
-        print_r($result);
-        echo '</pre>';
         return $result;
     }
 
@@ -38,9 +35,7 @@ class ModeloInstall {
         foreach ($tablas as $tabla)
         {
             $consulta='DROP TABLE `'.$_SESSION['parametros']['bd'].'`.`'.$tabla["table_name"].'`';
-            echo $consulta;
             $result= $this->conexion->sendQuery($consulta);
-            print_r($result);
         }
 
     }
@@ -49,8 +44,14 @@ class ModeloInstall {
     {
         foreach ($consultas as $consulta)
         {
-            echo $consulta."<br/><br/><br/>";
-            $result= $this->conexion->sendQuery($consulta);
+            $consulta=$consulta.";";
+            $this->conexion->sendQuery($consulta);
+            $error=$this->conexion->obtenerError();
+            print_r($error);
+            if($error)
+            {
+                return false;
+            }
         }
         return true;
     }
