@@ -5,9 +5,19 @@
  * Date: 31/10/2014
  * Time: 13:34
  */
-
+session_name('envios');
+session_start();
+if (!isset($_SESSION["hora"]))
+$_SESSION["hora"]=time();
 define("RUTA_ABS", realpath(__DIR__.'/..'));
 define("URL_APP", "http://".$_SERVER["HTTP_HOST"]."/Gestion-envios");
+if (!file_exists("Config.php"))
+{
+    require_once RUTA_ABS."/Install/index.php";
+}
+else
+{
+
 require_once(RUTA_ABS."/App/Controladores/ControladorEnvios.php");
 require_once(RUTA_ABS."/App/Controladores/ControladorUsuarios.php");
 require_once(RUTA_ABS."/App/Modelos/ModeloEnvios.php");
@@ -18,21 +28,13 @@ require_once(RUTA_ABS."/App/lib/Tratamiento-form.php");
 require_once(RUTA_ABS."/App/helpers/crea-select-busqueda.php");
 require_once(RUTA_ABS."/App/helpers/carga-plantilla.php");
 
-session_name('envios');
-session_start();
+
 if (isset($_SESSION['LAST_ACTIVITY']) && (time() - $_SESSION['LAST_ACTIVITY'] > Config::$tiempo)) {
     session_unset();     // unset $_SESSION variable for the run-time
     session_destroy();   // destroy session data in storage
 }
 $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 
-
-if (!file_exists("Config.php"))
-{
-    require_once RUTA_ABS."/Install/index.php";
-}
-else
-{
 // enrutamiento
     $map = array(
         'home' => array('controlador'=>'ControladorEnvios','metodo' =>'inicio','titulo' =>'Envios'),

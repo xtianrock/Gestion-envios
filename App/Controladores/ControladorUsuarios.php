@@ -18,6 +18,7 @@ class ControladorUsuarios {
      */
     public static function login()
     {
+        $titulo="Login";
         $accion="login";
         if (isset($_POST["log-in"])) {
             $modelo = new ModeloUsuarios();
