@@ -38,17 +38,17 @@ $_SESSION['LAST_ACTIVITY'] = time(); // update last activity time stamp
 // enrutamiento
     $map = array(
         'home' => array('controlador'=>'ControladorEnvios','metodo' =>'inicio','titulo' =>'Envios'),
-        'listar' => array('controlador'=>'ControladorEnvios','metodo' =>'listarEnvio','titulo' =>'Lista envio'),
+        'listar' => array('controlador'=>'ControladorEnvios','metodo' =>'listarEnvio','titulo' =>'Lista de envios'),
         'alta' => array('controlador'=>'ControladorEnvios','metodo' =>'insertarEnvio','titulo' =>'Insercción envio'),
         'modificar' => array('controlador'=>'ControladorEnvios','metodo' =>'modificarEnvio','titulo' =>'Editar envio'),
         'eliminar' => array('controlador'=>'ControladorEnvios','metodo' =>'eliminarEnvio','titulo' =>'Cancelar envio'),
-        'confirmar' => array('controlador'=>'ControladorEnvios','metodo' =>'confirmarRecepcion','titulo' =>'confirmar envio'),
+        'confirmar' => array('controlador'=>'ControladorEnvios','metodo' =>'confirmarRecepcion','titulo' =>'Confirmar envio'),
         'buscar' => array('controlador'=>'ControladorEnvios','metodo' =>'buscarEnvio','titulo' =>'Buscar envios'),
         'login' => array('controlador'=>'ControladorUsuarios','metodo' =>'login','titulo' =>'Login'),
         'logout' => array('controlador'=>'ControladorUsuarios','metodo' =>'logout','titulo' =>'Logout'),
-        'control-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'control','titulo' =>'Login'),
-        'nuevo-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'nuevo','titulo' =>'Login'),
-        'eliminar-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'eliminar','titulo' =>'Login')
+        'control-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'control','titulo' =>'Control de usuarios'),
+        'nuevo-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'nuevo','titulo' =>'Sign in'),
+        'eliminar-usuario' => array('controlador'=>'ControladorUsuarios','metodo' =>'eliminar','titulo' =>'Eliminar usuario')
     );
 
     if(isset($_SESSION['usuario']))
