@@ -23,13 +23,13 @@
 
 <section id="principal">
     <div id="menu-lateral">
-       <?=CargaVista(RUTA_ABS.'/App/Vistas/menu-lateral.php');?>
+        <?=CargaVista(RUTA_ABS.'/App/Vistas/menu-lateral.php');?>
     </div>
     <div id="contenido">
         <?php if(isset($paginacion))
-                echo $paginacion;
-              if(isset($contenido))
-                echo $contenido;?>
+            echo $paginacion;
+        if(isset($contenido))
+            echo $contenido;?>
     </div>
 </section>
 <section id="footer">

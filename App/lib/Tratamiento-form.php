@@ -12,7 +12,7 @@ class TratamientoFormularios {
     /**
      * Funcion encargada de validar datos que llegan por post.
      *
-     * @param $criterios array con los criterios para el filtrado
+         * @param $criterios array con los criterios para el filtrado
      *
      * @return array array con los datos no validos.
      */
